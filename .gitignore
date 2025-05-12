@@ -1,10 +1,15 @@
-
-
-cat .gitignore
-
-
-
+# Prerequisites
+*.d
 .vs/
+
+# Generated folder files
+x64/
+Debug/
+Release/
+*.obj
+*.pdb
+*.log
+*.tmp
 
 # Compiled Object files
 *.slo
