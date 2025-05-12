@@ -2,8 +2,6 @@
 *.d
 .vs/
 
-*.64
-
 # Generated folder files
 x64/
 Debug/
