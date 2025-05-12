@@ -1,9 +1,5 @@
-
-
-cat .gitignore
-
-
-
+# Prerequisites
+*.d
 .vs/
 
 # Compiled Object files
