@@ -18,5 +18,56 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Excepcion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entorno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Excepcion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entorno.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ciclo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CicloDia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Criatura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Recurso.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazGrafica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="source.txt" />
+    <Text Include="EntornoEXM.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Enunciado.pdf">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="InitStartup.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="x64\Debug\Background.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

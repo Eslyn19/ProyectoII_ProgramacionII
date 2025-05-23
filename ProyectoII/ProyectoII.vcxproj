@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +128,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entorno.cpp" />
+    <ClCompile Include="Excepcion.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ciclo.h" />
+    <ClInclude Include="CicloDia.h" />
+    <ClInclude Include="Criatura.h" />
+    <ClInclude Include="Entorno.h" />
+    <ClInclude Include="Excepcion.h" />
+    <ClInclude Include="InterfazGrafica.h" />
+    <ClInclude Include="Recurso.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="EntornoEXM.txt" />
+    <Text Include="source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Enunciado.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="InitStartup.jpeg" />
+    <Image Include="Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="x64\Debug\Background.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

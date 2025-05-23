@@ -3,11 +3,6 @@
 .vs/
 
 # Generated folder files
-x64/
-Debug/
-Release/
-x64/Debug/
-x64/Release/
 *.obj
 *.pdb
 *.log
