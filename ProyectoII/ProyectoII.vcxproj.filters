@@ -21,7 +21,28 @@
     <ClCompile Include="Excepcion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Entorno.cpp">
+    <ClCompile Include="Criatura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FabricaCriatura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Carnivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Herbivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Omnivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FabricaOmnivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuadricula.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ecosistema.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,22 +50,31 @@
     <ClInclude Include="Excepcion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entorno.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ciclo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CicloDia.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Criatura.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Recurso.h">
+    <ClInclude Include="Carnivoro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InterfazGrafica.h">
+    <ClInclude Include="FabricaCriatura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Herbivoro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Omnivoro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FabricaOmnivoro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cuadricula.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ecosistema.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,20 +83,30 @@
     <Text Include="EntornoEXM.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Enunciado.pdf">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="InitStartup.jpeg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Logo.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="omnivoro.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carnivoro.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Herbivoro.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="x64\Debug\Background.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Boton.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="simulacion.mp3">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

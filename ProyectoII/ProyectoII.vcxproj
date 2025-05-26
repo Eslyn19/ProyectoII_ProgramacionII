@@ -128,31 +128,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Entorno.cpp" />
+    <ClCompile Include="Carnivoro.cpp" />
+    <ClCompile Include="Criatura.cpp" />
+    <ClCompile Include="Cuadricula.cpp" />
+    <ClCompile Include="Ecosistema.cpp" />
     <ClCompile Include="Excepcion.cpp" />
+    <ClCompile Include="FabricaCriatura.cpp" />
+    <ClCompile Include="FabricaOmnivoro.cpp" />
+    <ClCompile Include="Herbivoro.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Omnivoro.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ciclo.h" />
-    <ClInclude Include="CicloDia.h" />
+    <ClInclude Include="Carnivoro.h" />
     <ClInclude Include="Criatura.h" />
-    <ClInclude Include="Entorno.h" />
+    <ClInclude Include="Cuadricula.h" />
+    <ClInclude Include="Ecosistema.h" />
     <ClInclude Include="Excepcion.h" />
-    <ClInclude Include="InterfazGrafica.h" />
-    <ClInclude Include="Recurso.h" />
+    <ClInclude Include="FabricaCriatura.h" />
+    <ClInclude Include="FabricaOmnivoro.h" />
+    <ClInclude Include="Herbivoro.h" />
+    <ClInclude Include="Interfaz.h" />
+    <ClInclude Include="Omnivoro.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EntornoEXM.txt" />
     <Text Include="source.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Enunciado.pdf" />
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="Carnivoro.png" />
+    <Image Include="Herbivoro.png" />
     <Image Include="InitStartup.jpeg" />
     <Image Include="Logo.png" />
+    <Image Include="omnivoro.png" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Boton.mp3" />
+    <Media Include="simulacion.mp3" />
     <Media Include="x64\Debug\Background.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

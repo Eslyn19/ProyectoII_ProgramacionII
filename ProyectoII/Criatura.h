@@ -1,32 +1,21 @@
 #pragma once
+#include <string>
+#include <raylib.h>
 
-/*
-	
-	> moverse (x, y)
-	
-	> buscar recursos
-	
-	> alimentarse (si el del tipo de alimento correcto, se alimenta -> energia++)
-
-	> Herbiboro (plantas, !carne, agua)
-	  Carnivoro (!plantas, carne, agua)
-	  Omnivoro  (plantas, carne, agua)
-
-	> nivel de recursos (energia)
-
-	> energia = 0, muere
-
-	> criatura nueva con energia = base
-
-	reproducirse
-
-*/
-
-
-//class Criatura {
-//	int MoverX;
-//	int MoverY;
-//	int energia;
-//	int edad;
-//	std::string nombre;
-//};
+class Criatura
+{
+public:
+	Criatura();
+	virtual int getPosX();
+	virtual int getPosY();
+	virtual int getEnergia();
+	virtual std::string getNombre();
+	virtual ~Criatura();
+protected:
+	int posX; // Posicion x & y de moverse a traves del mapa
+	int posY;
+	int energia;
+	std::string nombre;
+	Vector2 posicion; // Posicion de imagen
+	Texture2D textura;
+};
