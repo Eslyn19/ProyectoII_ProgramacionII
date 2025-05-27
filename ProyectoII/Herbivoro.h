@@ -1,10 +1,11 @@
 #pragma once
 #include "Criatura.h"
-#include <raylib.h>
 
-class Herbivoro : public Criatura
-{
+class Herbivoro : public Criatura {
 public:
-	Herbivoro(int, int, int, std::string, Vector2, Texture2D);
-	virtual ~Herbivoro();
-};
+    Herbivoro(const char* ruta, float x, float y, int ancho);
+    ~Herbivoro() override;
+
+    void Dibujar() override;
+    void Actualizar() override;
+}; 

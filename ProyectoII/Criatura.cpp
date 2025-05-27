@@ -1,13 +1,20 @@
 #include "Criatura.h"
 
-Criatura::Criatura() : posX(0), posY(0), energia(0), nombre(""), posicion({ 0, 0 }), textura{} {}
+Criatura::Criatura(const char* ruta, float _x, float _y, int ancho) {
+    x = _x;
+    y = _y;
+    posicion = { x, y };
+    pantallaAncho = ancho;
+    energia = 100;
+    textura = LoadTexture(ruta);
+}
 
-Criatura::~Criatura() {}
+void Criatura::SetPos(float _x, float _y) {
+    x = _x;
+    y = _y;
+    posicion = { x, y };
+}
 
-int Criatura::getPosX() { return posX; }
-
-int Criatura::getPosY() { return posY; }
-
-int Criatura::getEnergia() { return energia; }
-
-std::string Criatura::getNombre() { return nombre; }
+Criatura::~Criatura() {
+    UnloadTexture(textura);
+} 

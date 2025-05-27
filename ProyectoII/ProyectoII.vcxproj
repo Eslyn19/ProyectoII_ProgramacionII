@@ -130,11 +130,9 @@
   <ItemGroup>
     <ClCompile Include="Carnivoro.cpp" />
     <ClCompile Include="Criatura.cpp" />
-    <ClCompile Include="Cuadricula.cpp" />
     <ClCompile Include="Ecosistema.cpp" />
     <ClCompile Include="Excepcion.cpp" />
-    <ClCompile Include="FabricaCriatura.cpp" />
-    <ClCompile Include="FabricaOmnivoro.cpp" />
+    <ClCompile Include="FabricaConcreta.cpp" />
     <ClCompile Include="Herbivoro.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Omnivoro.cpp" />
@@ -142,18 +140,12 @@
   <ItemGroup>
     <ClInclude Include="Carnivoro.h" />
     <ClInclude Include="Criatura.h" />
-    <ClInclude Include="Cuadricula.h" />
     <ClInclude Include="Ecosistema.h" />
     <ClInclude Include="Excepcion.h" />
-    <ClInclude Include="FabricaCriatura.h" />
-    <ClInclude Include="FabricaOmnivoro.h" />
+    <ClInclude Include="FabricaAbstracta.h" />
+    <ClInclude Include="FabricaConcreta.h" />
     <ClInclude Include="Herbivoro.h" />
-    <ClInclude Include="Interfaz.h" />
     <ClInclude Include="Omnivoro.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="EntornoEXM.txt" />
-    <Text Include="source.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Carnivoro.png" />

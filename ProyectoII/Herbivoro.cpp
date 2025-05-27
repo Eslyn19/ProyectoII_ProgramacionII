@@ -1,13 +1,16 @@
 #include "Herbivoro.h"
 
-Herbivoro::Herbivoro(int _posX, int _posY, int _energia, std::string _nombre, Vector2 _pos, Texture2D _ruta)
-{
-	this->posX = _posX;
-	this->posY = _posY;
-	this->energia = _energia;
-	this->nombre = _nombre;
-	this->posicion = _pos;
-	this->textura = _ruta;
+Herbivoro::Herbivoro(const char* ruta, float x, float y, int ancho)
+    : Criatura(ruta, x, y, ancho) {
 }
 
-Herbivoro::~Herbivoro() {}
+Herbivoro::~Herbivoro() {
+}
+
+void Herbivoro::Dibujar() {
+    DrawTexture(textura, (int)x, (int)y, WHITE);
+}
+
+void Herbivoro::Actualizar() {
+    // Por ahora está vacío, se implementará la lógica de movimiento después
+} 

@@ -84,7 +84,7 @@ void Ecosistema::IniciarAplicacion()
     InitAudioDevice();
     SetTargetFPS(60);
 
-    // Cargar recursos [imagenes | musica | logos]
+    // Cargar recursos
     Texture2D fondo = LoadTexture("InitStartup.jpeg");
     Texture2D fondoSimulacion = LoadTexture("FondoNature.jpg");
     Music musica = LoadMusicStream("Background.mp3");
@@ -95,17 +95,11 @@ void Ecosistema::IniciarAplicacion()
     SetWindowIcon(logo);
     SetMusicVolume(musica, 0.5f);
     PlayMusicStream(musica);
-    Texture2D carnivoro = LoadTexture("Carnivoro.png");
-    Texture2D herbivoro = LoadTexture("Herbivoro.png");
-    Texture2D omnivoro = LoadTexture("Omnivoro.png");
 
-    Vector2 posCarnivoro = { 100, 100 };
-    Vector2 posHerbivoro = { 400, 300 };
-    Vector2 posOmnivoro = { 700, 500 };
-
-    Vector2 velCarnivoro = { 2.5f, 2.0f };
-    Vector2 velHerbivoro = { -2.0f, 1.5f };
-    Vector2 velOmnivoro = { 1.8f, -2.2f };
+    FabricaAbstracta* fabrica = new FabricaConcreta();
+    Criatura* herbivoro = fabrica->CrearHerbivoro("Herbivoro.png", 100, 100, 800);
+    Criatura* carnivoro = fabrica->CrearCarnivoro("Carnivoro.png", 200, 200, 800);
+    Criatura* omnivoro = fabrica->CrearOmnivoro("Omnivoro.png", 300, 300, 800);
 
     GameScreen currentScreen = MENU;
 
@@ -147,6 +141,10 @@ void Ecosistema::IniciarAplicacion()
 
             Rectangle botonRegresar = { 10, 25, 200, 50 };
 
+            herbivoro->Dibujar();
+            carnivoro->Dibujar();
+            omnivoro->Dibujar();
+
             if (CrearBoton(botonRegresar, "Regresar"))
             {
                 currentScreen = MENU;
@@ -159,31 +157,13 @@ void Ecosistema::IniciarAplicacion()
                 PlayMusicStream(musica);
             }
 
-            posCarnivoro.x += velCarnivoro.x;
-            posCarnivoro.y += velCarnivoro.y;
-            if (posCarnivoro.x <= 0 || posCarnivoro.x + carnivoro.width >= screenWidth) velCarnivoro.x *= -1;
-            if (posCarnivoro.y <= 100 || posCarnivoro.y + carnivoro.height >= screenHeight) velCarnivoro.y *= -1;
-
-            posHerbivoro.x += velHerbivoro.x;
-            posHerbivoro.y += velHerbivoro.y;
-            if (posHerbivoro.x <= 0 || posHerbivoro.x + herbivoro.width >= screenWidth) velHerbivoro.x *= -1;
-            if (posHerbivoro.y <= 100 || posHerbivoro.y + herbivoro.height >= screenHeight) velHerbivoro.y *= -1;
-
-            posOmnivoro.x += velOmnivoro.x;
-            posOmnivoro.y += velOmnivoro.y;
-            if (posOmnivoro.x <= 0 || posOmnivoro.x + omnivoro.width >= screenWidth) velOmnivoro.x *= -1;
-            if (posOmnivoro.y <= 100 || posOmnivoro.y + omnivoro.height >= screenHeight) velOmnivoro.y *= -1;
-
-            DrawTexture(carnivoro, (int)posCarnivoro.x, (int)posCarnivoro.y, WHITE);
-            DrawTexture(herbivoro, (int)posHerbivoro.x, (int)posHerbivoro.y, WHITE);
-            DrawTexture(omnivoro, (int)posOmnivoro.x, (int)posOmnivoro.y, WHITE);
             Rectangle campoTexto = { (screenWidth - 300) / 2.0f, 20, 300, 40 };
             Rectangle botonEjecutar = { campoTexto.x + campoTexto.width + 10, 20, 120, 40 };
 
             if (CampoTexto(campoTexto, botonEjecutar, comando, 64, textFieldActivo))
             {
-                resultadoComando = comando;  // Aquí capturas el texto al hacer clic
-                comando[0] = '\0';           // Limpia el campo si quieres
+                resultadoComando = comando; 
+                comando[0] = '\0';
             }
 
             // Puedes dibujar lo que devolvió el comando
@@ -202,13 +182,15 @@ void Ecosistema::IniciarAplicacion()
     UnloadMusicStream(musica);
     UnloadTexture(fondo);
     UnloadTexture(fondoSimulacion);
-    UnloadTexture(carnivoro);
-    UnloadTexture(herbivoro);
-    UnloadTexture(omnivoro);
    
+	delete herbivoro;
+	delete carnivoro;
+	delete omnivoro;
+
 	// Cerrar recursos
     CloseAudioDevice();
     CloseWindow();
 }
 
+// destructor
 Ecosistema::~Ecosistema() {}

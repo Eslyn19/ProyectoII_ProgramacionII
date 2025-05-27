@@ -1,36 +1,16 @@
 #include "Omnivoro.h"
 
-Omnivoro::Omnivoro(int _posX, int _posY, int _energia, std::string _nombre, Vector2 _pos, Texture2D _ruta)
-{
-	this->posX = _posX;
-	this->posY = _posY;
-	this->energia = _energia;
-	this->nombre = _nombre;
-	this->posicion = _pos;
-	this->textura = _ruta;
+Omnivoro::Omnivoro(const char* ruta, float x, float y, int ancho)
+    : Criatura(ruta, x, y, ancho) {
 }
 
-Omnivoro::~Omnivoro() 
-{
-	UnloadTexture(textura);
+Omnivoro::~Omnivoro() {
 }
 
-int Omnivoro::getPosX()
-{
-	return posX;
+void Omnivoro::Dibujar() {
+    DrawTexture(textura, (int)x, (int)y, WHITE);
 }
 
-int Omnivoro::getPosY()
-{
-	return posY;
-}
-
-int Omnivoro::getEnergia()
-{
-	return energia;
-}
-
-std::string Omnivoro::getNombre()
-{ 
-	return nombre;
-}
+void Omnivoro::Actualizar() {
+    // Por ahora está vacío, se implementará la lógica de movimiento después
+} 

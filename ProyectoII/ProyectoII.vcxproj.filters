@@ -21,13 +21,16 @@
     <ClCompile Include="Excepcion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Criatura.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FabricaCriatura.cpp">
+    <ClCompile Include="Ecosistema.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Carnivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Criatura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FabricaConcreta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Herbivoro.cpp">
@@ -36,27 +39,24 @@
     <ClCompile Include="Omnivoro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FabricaOmnivoro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cuadricula.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ecosistema.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Excepcion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Criatura.h">
+    <ClInclude Include="Ecosistema.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Carnivoro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FabricaCriatura.h">
+    <ClInclude Include="Criatura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FabricaAbstracta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FabricaConcreta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Herbivoro.h">
@@ -65,22 +65,6 @@
     <ClInclude Include="Omnivoro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaz.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FabricaOmnivoro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cuadricula.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ecosistema.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="source.txt" />
-    <Text Include="EntornoEXM.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="InitStartup.jpeg">

@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <raylib.h>
+#include "FabricaConcreta.h"
+#include "FabricaAbstracta.h"
 enum GameScreen { MENU = 0, SIMULACION, SALIR };
 
 class Ecosistema

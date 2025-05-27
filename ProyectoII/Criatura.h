@@ -1,21 +1,26 @@
 #pragma once
-#include <string>
-#include <raylib.h>
+#include "raylib.h"
 
-class Criatura
-{
+class Criatura {
 public:
-	Criatura();
-	virtual int getPosX();
-	virtual int getPosY();
-	virtual int getEnergia();
-	virtual std::string getNombre();
-	virtual ~Criatura();
+    Criatura(const char* ruta, float _x, float _y, int ancho);
+    virtual ~Criatura();
+
+    virtual void Dibujar() = 0;
+    virtual void Actualizar() = 0;
+
+    // Getters
+    float GetX() const { return x; }
+    float GetY() const { return y; }
+    int GetAnchoPantalla() const { return pantallaAncho; }
+
+    // Setters
+    void SetPos(float _x, float _y);
+
 protected:
-	int posX; // Posicion x & y de moverse a traves del mapa
-	int posY;
-	int energia;
-	std::string nombre;
-	Vector2 posicion; // Posicion de imagen
-	Texture2D textura;
-};
+    float x, y;
+    int energia;
+    int pantallaAncho;
+    Vector2 posicion;
+    Texture2D textura;
+}; 
