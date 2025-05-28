@@ -54,6 +54,12 @@
     <ClCompile Include="FabricaRecursosConcreta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ContenedorCriaturas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EstrategiaMovimiento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Excepcion.h">
@@ -96,6 +102,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FabricaRecursosConcreta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContenedorCriaturas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Estrategias.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EstrategiaMovimiento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

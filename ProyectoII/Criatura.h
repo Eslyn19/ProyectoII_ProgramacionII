@@ -1,5 +1,10 @@
 #pragma once
 #include "raylib.h"
+#include "Estrategias.h"
+#include "EstrategiaMovimiento.h"
+
+// Implementacion patron Estrategia
+class EstrategiaMovimiento;
 
 class Criatura {
 public:
@@ -9,24 +14,25 @@ public:
     virtual void Dibujar() = 0;
     virtual void Actualizar() = 0;
 
-    // Getters
-    float GetX() const { return x; }
-    float GetY() const { return y; }
-    int GetAnchoPantalla() const { return pantallaAncho; }
-    int GetEnergia() const { return energia; }
-    float GetVelocidad() const { return velocidad; }
+    // Metodos Get
+    float GetX() const;
+    float GetY() const;
+    int GetAnchoPantalla() const;
+    int GetEnergia() const;
+    float GetVelocidad() const;
 
-    // Setters
+    // Metodos Set
     void SetPos(float _x, float _y);
-    void SetEnergia(int _energia) { energia = _energia; }
-    void SetVelocidad(float _velocidad) { velocidad = _velocidad; }
+    void SetEnergia(int _energia);
+    void SetVelocidad(float _velocidad);
+    void SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento);
 
-  protected:
+protected:
     float x, y;
+    float velocidad;
     int energia;
     int pantallaAncho;
     Vector2 posicion;
     Texture2D textura;
-    float velocidad;
-
+    EstrategiaMovimiento* movimiento;
 }; 

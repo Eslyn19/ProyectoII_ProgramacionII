@@ -2,6 +2,7 @@
 
 Omnivoro::Omnivoro(const char* ruta, float _x, float _y, int ancho, int _energia, float _velocidad)
     : Criatura(ruta, _x, _y, ancho, _energia, _velocidad) {
+    movimiento = new EstrategiaMovimiento();
 }
 
 Omnivoro::~Omnivoro() {
@@ -13,11 +14,7 @@ void Omnivoro::Dibujar() {
 }
 
 void Omnivoro::Actualizar() {
-    // Mover en dirección actual
-    x += velocidad;
-    
-    // Rebotar en los bordes
-    if (x <= 0 || x >= pantallaAncho - textura.width) {
-        velocidad = -velocidad;
+    if (movimiento) {
+        movimiento->Mover(this);
     }
 }
