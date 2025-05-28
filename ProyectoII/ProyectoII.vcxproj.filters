@@ -21,9 +21,6 @@
     <ClCompile Include="Excepcion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ecosistema.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Carnivoro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +34,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Omnivoro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ecosistema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Recurso.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursoCarne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursoPlanta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursoAgua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FabricaRecursosConcreta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,6 +80,24 @@
     <ClInclude Include="Omnivoro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Recurso.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursoCarne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursoPlanta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursoAgua.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FabricaRecursosAbstracta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FabricaRecursosConcreta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="InitStartup.jpeg">
@@ -80,6 +113,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Herbivoro.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Carne.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Planta.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="agua.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

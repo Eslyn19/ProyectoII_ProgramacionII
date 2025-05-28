@@ -96,10 +96,19 @@ void Ecosistema::IniciarAplicacion()
     SetMusicVolume(musica, 0.5f);
     PlayMusicStream(musica);
 
+    // Crear criaturas usando la fábrica
     FabricaAbstracta* fabrica = new FabricaConcreta();
-    Criatura* herbivoro = fabrica->CrearHerbivoro("Herbivoro.png", 100, 100, 800);
-    Criatura* carnivoro = fabrica->CrearCarnivoro("Carnivoro.png", 200, 200, 800);
-    Criatura* omnivoro = fabrica->CrearOmnivoro("Omnivoro.png", 300, 300, 800);
+
+    // Crear diferentes tipos de criaturas
+    Criatura* herbivoro = fabrica->CrearHerbivoro("Herbivoro.png", 100, 100, 800, 100, 0.3f);
+    Criatura* carnivoro = fabrica->CrearCarnivoro("Carnivoro.png", 200, 200, 800, 100, 0.4f);
+    Criatura* omnivoro = fabrica->CrearOmnivoro("Omnivoro.png", 300, 300, 800, 100, 0.2f);
+
+    FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
+
+    Recurso* carne = fabricaRecursos->CrearCarne("Carne.png", 400, 400, 100);
+    Recurso* planta = fabricaRecursos->CrearPlanta("Planta.png", 500, 500, 100);
+    Recurso* agua = fabricaRecursos->CrearAgua("agua.png", 600, 600, 100);
 
     GameScreen currentScreen = MENU;
 
@@ -131,7 +140,6 @@ void Ecosistema::IniciarAplicacion()
             UpdateMusicStream(musicaSimulacion);
             StopMusicStream(musica);
 
-            // Entrar a simulación: reproducir música si no está sonando
             if (!IsMusicStreamPlaying(musicaSimulacion))
                 PlayMusicStream(musicaSimulacion);
 
@@ -139,11 +147,15 @@ void Ecosistema::IniciarAplicacion()
             DrawTexture(fondoSimulacion, 0, 0, WHITE);
             DrawLineEx(Vector2{ 0, 100 }, Vector2{ (float)screenWidth, 100 }, 3.0f, DARKGRAY);
 
-            Rectangle botonRegresar = { 10, 25, 200, 50 };
-
             herbivoro->Dibujar();
             carnivoro->Dibujar();
             omnivoro->Dibujar();
+
+			carne->Dibujar();
+			planta->Dibujar();
+			agua->Dibujar();
+
+            Rectangle botonRegresar = { 10, 25, 200, 50 };
 
             if (CrearBoton(botonRegresar, "Regresar"))
             {
@@ -162,35 +174,35 @@ void Ecosistema::IniciarAplicacion()
 
             if (CampoTexto(campoTexto, botonEjecutar, comando, 64, textFieldActivo))
             {
-                resultadoComando = comando; 
+ 
                 comando[0] = '\0';
             }
 
-            // Puedes dibujar lo que devolvió el comando
             if (!resultadoComando.empty())
             {
                 DrawText(("Resultado: " + resultadoComando).c_str(), 20, 75, 20, DARKGRAY);
             }
+
+          
 
         } break;
         }
         EndDrawing();
     }
 
-	// Limpiar recursos
+    // Limpiar recursos
     StopMusicStream(musica);
     UnloadMusicStream(musica);
     UnloadTexture(fondo);
     UnloadTexture(fondoSimulacion);
-   
-	delete herbivoro;
-	delete carnivoro;
-	delete omnivoro;
+  
+    delete herbivoro;
+    delete carnivoro;
+    delete omnivoro;
+    delete fabrica;
 
-	// Cerrar recursos
     CloseAudioDevice();
     CloseWindow();
 }
 
-// destructor
 Ecosistema::~Ecosistema() {}

@@ -3,6 +3,11 @@ C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Criatura.cpp;C:\Users\jara
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Ecosistema.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Ecosistema.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Excepcion.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Excepcion.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\FabricaConcreta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\FabricaConcreta.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\FabricaRecursosConcreta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\FabricaRecursosConcreta.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Herbivoro.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Herbivoro.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\main.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\main.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Omnivoro.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Omnivoro.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Recurso.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Recurso.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoAgua.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoAgua.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoCarne.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoCarne.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoPlanta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoPlanta.obj

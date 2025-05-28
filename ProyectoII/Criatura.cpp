@@ -1,11 +1,13 @@
 #include "Criatura.h"
 
-Criatura::Criatura(const char* ruta, float _x, float _y, int ancho) {
+Criatura::Criatura(const char* ruta, float _x, float _y, int ancho, int _energia, float _velocidad) {
+          
     x = _x;
     y = _y;
     posicion = { x, y };
     pantallaAncho = ancho;
-    energia = 100;
+    energia = _energia;
+    velocidad = _velocidad;
     textura = LoadTexture(ruta);
 }
 

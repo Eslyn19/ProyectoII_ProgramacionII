@@ -133,9 +133,14 @@
     <ClCompile Include="Ecosistema.cpp" />
     <ClCompile Include="Excepcion.cpp" />
     <ClCompile Include="FabricaConcreta.cpp" />
+    <ClCompile Include="FabricaRecursosConcreta.cpp" />
     <ClCompile Include="Herbivoro.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Omnivoro.cpp" />
+    <ClCompile Include="Recurso.cpp" />
+    <ClCompile Include="RecursoAgua.cpp" />
+    <ClCompile Include="RecursoCarne.cpp" />
+    <ClCompile Include="RecursoPlanta.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carnivoro.h" />
@@ -144,15 +149,24 @@
     <ClInclude Include="Excepcion.h" />
     <ClInclude Include="FabricaAbstracta.h" />
     <ClInclude Include="FabricaConcreta.h" />
+    <ClInclude Include="FabricaRecursosAbstracta.h" />
+    <ClInclude Include="FabricaRecursosConcreta.h" />
     <ClInclude Include="Herbivoro.h" />
     <ClInclude Include="Omnivoro.h" />
+    <ClInclude Include="Recurso.h" />
+    <ClInclude Include="RecursoAgua.h" />
+    <ClInclude Include="RecursoCarne.h" />
+    <ClInclude Include="RecursoPlanta.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="agua.png" />
+    <Image Include="Carne.png" />
     <Image Include="Carnivoro.png" />
     <Image Include="Herbivoro.png" />
     <Image Include="InitStartup.jpeg" />
     <Image Include="Logo.png" />
     <Image Include="omnivoro.png" />
+    <Image Include="Planta.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Boton.mp3" />

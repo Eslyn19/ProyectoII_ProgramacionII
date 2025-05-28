@@ -1,11 +1,12 @@
 #pragma once
-#include "Criatura.h"
+#include "Herbivoro.h"
+#include "Carnivoro.h"
+#include "Omnivoro.h"
 
 class FabricaAbstracta {
 public:
-    FabricaAbstracta() {}
-    virtual ~FabricaAbstracta() {}
-    virtual Criatura* CrearHerbivoro(const char* ruta, float x, float y, int ancho) = 0;
-    virtual Criatura* CrearCarnivoro(const char* ruta, float x, float y, int ancho) = 0;
-    virtual Criatura* CrearOmnivoro(const char* ruta, float x, float y, int ancho) = 0;
+    virtual ~FabricaAbstracta() = default;
+    virtual Herbivoro* CrearHerbivoro(const char* ruta, float x, float y, int ancho, int energia = 100, float velocidad = 2.0f) = 0;
+    virtual Carnivoro* CrearCarnivoro(const char* ruta, float x, float y, int ancho, int energia = 100, float velocidad = 3.0f) = 0;
+    virtual Omnivoro* CrearOmnivoro(const char* ruta, float x, float y, int ancho, int energia = 100, float velocidad = 2.5f) = 0;
 }; 
