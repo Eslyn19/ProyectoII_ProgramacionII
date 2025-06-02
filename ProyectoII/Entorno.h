@@ -8,7 +8,7 @@
 #define NIEVE "nieve.mp3"
 
 #define FONDO_SOLEADO "Desertico.png"
-#define FONDO_LLUVIA "lluvia2.png"
+#define FONDO_LLUVIA "lluvia.png"
 #define FONDO_NIEVE "Nevado.png"
 
 class Entorno {

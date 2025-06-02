@@ -185,6 +185,7 @@
     <Image Include="Herbivoro.png" />
     <Image Include="InitStartup.jpeg" />
     <Image Include="Logo.png" />
+    <Image Include="LogoExe.ico" />
     <Image Include="omnivoro.png" />
     <Image Include="Planta.png" />
     <Image Include="Rayo.png" />
@@ -195,6 +196,9 @@
     <Media Include="simulacion.mp3" />
     <Media Include="soleado.mp3" />
     <Media Include="x64\Debug\Background.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Icono.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

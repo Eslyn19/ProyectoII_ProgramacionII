@@ -15,7 +15,6 @@ private:
     FabricaRecursoAbstracta* fabrica;
     RecursosContenedor* contenedor;
     float ultimo;
-    const float tiempoGen = 1.5f;
 
     void GenerarPosicionAleatoria(float pos[2]);
     Recurso* GenerarRecursoConPesos(const std::string& clima);

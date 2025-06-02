@@ -148,21 +148,21 @@ void Ecosistema::IniciarAplicacion()
 
     // Crear criaturas
     FabricaAbstracta* fabrica = new FabricaConcreta();
-    Herbivoro* herbivoro1 = new Herbivoro(HERBIVORO, 100, 200, 100, 100, VEL_HERB);
+    Herbivoro* herbivoro1 = new Herbivoro(HERBIVORO, 100, 700, 100, 100, VEL_HERB);
     Herbivoro* herbivoro2 = new Herbivoro(HERBIVORO, 600, 400, 100, 100, VEL_HERB);
     Carnivoro* carnivoro1 = new Carnivoro(CARNIVORO, 500, 200, 100, 100, VEL_CARN);
     Carnivoro* carnivoro2 = new Carnivoro(CARNIVORO, 700, 500, 100, 100, VEL_CARN);
     Omnivoro* omnivoro1 = new Omnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
-    Omnivoro* omnivoro2 = new Omnivoro(OMNIVORO, 600, 400, 100, 100, VEL_OMNI);
+    Omnivoro* omnivoro2 = new Omnivoro(OMNIVORO, 600, 700, 100, 100, VEL_OMNI);
 
     // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
     Recurso* carne = fabricaRecursos->CrearCarne(CARNE, 300, 200);
 	Recurso* carne2 = fabricaRecursos->CrearCarne(CARNE, 500, 400);
-	Recurso* carne3 = fabricaRecursos->CrearCarne(CARNE, 100, 500);
+	Recurso* carne3 = fabricaRecursos->CrearCarne(CARNE, 150, 500);
     Recurso* planta = fabricaRecursos->CrearPlanta(PLANTA, 300, 500);
 	Recurso* planta2 = fabricaRecursos->CrearPlanta(PLANTA, 700, 600);
-	Recurso* planta3 = fabricaRecursos->CrearPlanta(PLANTA, 100, 100);
+	Recurso* planta3 = fabricaRecursos->CrearPlanta(PLANTA, 230, 140);
     Recurso* agua = fabricaRecursos->CrearAgua(AGUA, 600, 300);
 	Recurso* agua2 = fabricaRecursos->CrearAgua(AGUA, 800, 500);
 	Recurso* agua3 = fabricaRecursos->CrearAgua(AGUA, 200, 600);
@@ -354,13 +354,6 @@ void Ecosistema::IniciarAplicacion()
     UnloadTexture(fondo);
     UnloadImage(logo);
   
-    // Liberar memoria
-    /*delete herbivoro1;
-    delete herbivoro2;
-    delete carnivoro1;
-    delete carnivoro2;
-    delete omnivoro1;
-    delete omnivoro2;*/
     delete fabrica;
     delete generadorRecursos;
 

@@ -2,6 +2,8 @@
 #include "Entorno.h"
 #include "raylib.h"
 
+#define TIEMPO_GENERACION 1.0f //Tiempo en segundos entre generación de recursos
+
 static bool rand_initialized = []() { std::srand(std::time(nullptr)); return true; }();
 
 GeneradorRecursosObserver::GeneradorRecursosObserver(FabricaRecursoAbstracta* _fabrica, RecursosContenedor* _contenedor)
@@ -9,8 +11,8 @@ GeneradorRecursosObserver::GeneradorRecursosObserver(FabricaRecursoAbstracta* _f
 }
 
 void GeneradorRecursosObserver::GenerarPosicionAleatoria(float pos[2]) {
-    pos[0] = 0.0f + (rand() % 900);         // X entre 0 y 899
-    pos[1] = 130.0f + rand() % 600;       // Y entre 130 y 729
+    pos[0] = 0.0f + (rand() % 900); // X entre 0 y 899, limites de ventana de juego
+    pos[1] = 130.0f + rand() % 600; // Y entre 130 y 729
 }
 
 Recurso* GeneradorRecursosObserver::GenerarRecursoConPesos(const std::string& clima) {
@@ -48,7 +50,7 @@ Recurso* GeneradorRecursosObserver::GenerarRecursoConPesos(const std::string& cl
 void GeneradorRecursosObserver::Actualizar(const std::string& clima) {}
 
 void GeneradorRecursosObserver::Update(float tiempoActual) {
-    if (tiempoActual - ultimo >= tiempoGen) {
+    if (tiempoActual - ultimo >= TIEMPO_GENERACION) {
         std::string climaActual = Entorno::GetInstancia()->GetClimaActual();
         Recurso* nuevoRecurso = GenerarRecursoConPesos(climaActual);
         

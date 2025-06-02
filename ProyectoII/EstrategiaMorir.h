@@ -17,5 +17,4 @@ private:
 
     RecursosContenedor* contenedorRecursos;
     ContenedorCriaturas* contenedorCriaturas;
-    float tiempoMaximoSinComer;
 }; 
