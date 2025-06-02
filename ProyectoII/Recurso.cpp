@@ -21,6 +21,6 @@ void Recurso::Dibujar() {
 }
 
 void Recurso::Actualizar(const std::string& clima) {
-    TraceLog(LOG_INFO, TextFormat("%s: Clima actualizado a %s", GetTipoRecurso().c_str(), clima.c_str()));
+    TraceLog(LOG_INFO, TextFormat("%s: Clima actualizado a %s", GetTipoRecurso().c_str(), clima.c_str())); // mensaje para ventanilla
 }
 

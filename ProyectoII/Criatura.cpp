@@ -74,10 +74,4 @@ void Criatura::SetEstrategiaMorir(EstrategiaMorir* _morir) {
 
 Criatura::~Criatura() {
     UnloadTexture(textura);
-    /*if (movimiento != nullptr) {
-        delete movimiento;
-    }
-    if (morir != nullptr) {
-        delete morir;
-    }*/
 } 

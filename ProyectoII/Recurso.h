@@ -9,9 +9,6 @@ public:
     virtual ~Recurso();
 
     virtual void Dibujar() = 0;
-    bool EstaVivo() const;
-    bool DebeEliminarse() const;
-    int GetVida() const;
     float GetX() const;
     float GetY() const;
     float GetAncho() const { return ancho; }
