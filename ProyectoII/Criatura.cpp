@@ -9,6 +9,8 @@ Criatura::Criatura(const char* ruta, float _x, float _y, int ancho, int alto, fl
     textura = LoadTexture(ruta);
     movimiento = nullptr;
     alimento = nullptr;
+    morir = nullptr;
+    ultimoTiempoComida = GetTime();
 }
 
 void Criatura::Actualizar() {
@@ -17,6 +19,9 @@ void Criatura::Actualizar() {
     }
     if (alimento != nullptr) {
         alimento->Mover(this);
+    }
+    if (morir != nullptr) {
+        morir->Mover(this);
     }
 }
 
@@ -34,13 +39,19 @@ EstrategiaMovimiento* Criatura::GetEstrategiaMovimiento() const { return movimie
 
 EstrategiaAlimento* Criatura::GetEstrategiaAlimento() const { return alimento; }
 
+EstrategiaMorir* Criatura::GetEstrategiaMorir() const { return morir; }
+
+float Criatura::GetUltimoTiempoComida() const { return ultimoTiempoComida; }
+
+void Criatura::SetUltimoTiempoComida(float tiempo) { ultimoTiempoComida = tiempo; }
+
 void Criatura::SetPos(float _x, float _y) {
-	x = _x;
-	y = _y;
+    x = _x;
+    y = _y;
 }
 
 void Criatura::SetVelocidad(float _velocidad) {
-	velocidad = _velocidad;
+    velocidad = _velocidad;
 }
 
 void Criatura::SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento) {
@@ -54,6 +65,19 @@ void Criatura::SetEstrategiaAlimento(EstrategiaAlimento* _alimento) {
     alimento = _alimento;
 }
 
+void Criatura::SetEstrategiaMorir(EstrategiaMorir* _morir) {
+    if (morir != nullptr) {
+        delete morir;
+    }
+    morir = _morir;
+}
+
 Criatura::~Criatura() {
     UnloadTexture(textura);
+    /*if (movimiento != nullptr) {
+        delete movimiento;
+    }
+    if (morir != nullptr) {
+        delete morir;
+    }*/
 } 

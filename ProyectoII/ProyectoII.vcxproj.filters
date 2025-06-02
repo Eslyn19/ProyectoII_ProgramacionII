@@ -72,6 +72,9 @@
     <ClCompile Include="EstrategiaAlimento.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EstrategiaMorir.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Excepcion.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EstrategiaAlimento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EstrategiaMorir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

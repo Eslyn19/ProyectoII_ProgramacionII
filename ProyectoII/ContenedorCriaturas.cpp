@@ -11,6 +11,11 @@ ContenedorCriaturas::ContenedorCriaturas() : capacidad(10), cantidadCriaturas(0)
 
 // Destructor
 ContenedorCriaturas::~ContenedorCriaturas() {
+    for (int i = 0; i < cantidadCriaturas; i++) {
+        if (criaturas[i] != nullptr) {
+            delete criaturas[i];
+        }
+    }
     delete[] criaturas;
 }
 
@@ -77,4 +82,29 @@ Criatura* ContenedorCriaturas::GetCriatura(int indice) const {
         return criaturas[indice];
     }
     return nullptr;
+}
+
+void ContenedorCriaturas::EliminarCriatura(int indice) {
+    if (indice < 0 || indice >= cantidadCriaturas) return;
+    
+    if (criaturas[indice] != nullptr) {
+        delete criaturas[indice];
+        criaturas[indice] = nullptr;
+    }
+    
+    ReorganizarCriaturas();
+}
+
+void ContenedorCriaturas::ReorganizarCriaturas() {
+    int j = 0;
+    for (int i = 0; i < cantidadCriaturas; i++) {
+        if (criaturas[i] != nullptr) {
+            if (i != j) {
+                criaturas[j] = criaturas[i];
+                criaturas[i] = nullptr;
+            }
+            j++;
+        }
+    }
+    cantidadCriaturas = j;
 }

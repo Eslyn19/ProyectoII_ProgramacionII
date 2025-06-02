@@ -15,6 +15,8 @@ public:
     void AplicarEstrategiaMovimiento(EstrategiaMovimiento* estrategia);
     int GetCantidadCriaturas() const;
     Criatura* GetCriatura(int indice) const;
+    void EliminarCriatura(int indice);
+    void ReorganizarCriaturas();
 
 private:
     Criatura** criaturas;

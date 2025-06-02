@@ -139,7 +139,6 @@ void Ecosistema::IniciarAplicacion()
     // Asignar recursos
     Image logo = LoadImage(LOGO);
     Texture2D fondo = LoadTexture(INICIO);
-    Music musicaSimulacion = LoadMusicStream(MUSICA_SIMULACION);
     Music musica = LoadMusicStream(MUSICA);
 
     // cargar recursos
@@ -156,11 +155,17 @@ void Ecosistema::IniciarAplicacion()
     Omnivoro* omnivoro1 = new Omnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
     Omnivoro* omnivoro2 = new Omnivoro(OMNIVORO, 600, 400, 100, 100, VEL_OMNI);
 
-    // Crear recursos
+    // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
     Recurso* carne = fabricaRecursos->CrearCarne(CARNE, 300, 200);
+	Recurso* carne2 = fabricaRecursos->CrearCarne(CARNE, 500, 400);
+	Recurso* carne3 = fabricaRecursos->CrearCarne(CARNE, 100, 500);
     Recurso* planta = fabricaRecursos->CrearPlanta(PLANTA, 300, 500);
+	Recurso* planta2 = fabricaRecursos->CrearPlanta(PLANTA, 700, 600);
+	Recurso* planta3 = fabricaRecursos->CrearPlanta(PLANTA, 100, 100);
     Recurso* agua = fabricaRecursos->CrearAgua(AGUA, 600, 300);
+	Recurso* agua2 = fabricaRecursos->CrearAgua(AGUA, 800, 500);
+	Recurso* agua3 = fabricaRecursos->CrearAgua(AGUA, 200, 600);
 
     // Crear contenedor tipo criatura
     ContenedorCriaturas ContCriaturas;
@@ -187,12 +192,24 @@ void Ecosistema::IniciarAplicacion()
     omnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
 
+    // Crear y asignar estrategia de muerte individual para cada criatura
+    herbivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    herbivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    carnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    carnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    omnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    omnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+
     // Agregar al Contenedor de recursos
     ContRecursos.AgregarRecurso(agua);
     ContRecursos.AgregarRecurso(planta);
     ContRecursos.AgregarRecurso(carne);
-
-    // Aplicar estrategia de movimient
+	ContRecursos.AgregarRecurso(agua2);
+	ContRecursos.AgregarRecurso(planta2);
+	ContRecursos.AgregarRecurso(carne2);
+	ContRecursos.AgregarRecurso(agua3);
+	ContRecursos.AgregarRecurso(planta3);
+	ContRecursos.AgregarRecurso(carne3);
 
     // Crear el observador de generación de recursos
     GeneradorRecursosObserver* generadorRecursos = new GeneradorRecursosObserver(fabricaRecursos, &ContRecursos);
@@ -225,7 +242,6 @@ void Ecosistema::IniciarAplicacion()
             {
                 // Empezar musica del menu
                 UpdateMusicStream(musica);
-                StopMusicStream(musicaSimulacion);
 
                 // Cargar imagen al menu
                 DrawTexture(fondo, 0, 0, WHITE);
@@ -277,6 +293,11 @@ void Ecosistema::IniciarAplicacion()
                         EstrategiaAlimento* estrategiaAlimento = criatura->GetEstrategiaAlimento();
                         if (estrategiaAlimento != nullptr) {
                             estrategiaAlimento->Mover(criatura);
+                        }
+                        // Aplicar estrategia de muerte para cada criatura
+                        EstrategiaMorir* estrategiaMorir = criatura->GetEstrategiaMorir();
+                        if (estrategiaMorir != nullptr) {
+                            estrategiaMorir->Mover(criatura);
                         }
                     }
                 }
@@ -334,12 +355,12 @@ void Ecosistema::IniciarAplicacion()
     UnloadImage(logo);
   
     // Liberar memoria
-    delete herbivoro1;
+    /*delete herbivoro1;
     delete herbivoro2;
     delete carnivoro1;
     delete carnivoro2;
     delete omnivoro1;
-    delete omnivoro2;
+    delete omnivoro2;*/
     delete fabrica;
     delete generadorRecursos;
 

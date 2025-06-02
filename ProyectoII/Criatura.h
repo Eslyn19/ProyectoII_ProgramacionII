@@ -3,10 +3,12 @@
 #include "Estrategias.h"
 #include "EstrategiaMovimiento.h"
 #include "EstrategiaAlimento.h"
+#include "EstrategiaMorir.h"
 #include <string>
 
 class EstrategiaMovimiento;
 class EstrategiaAlimento;
+class EstrategiaMorir;
 
 class Criatura {
 public:
@@ -24,12 +26,16 @@ public:
     float GetVelocidad() const;
     EstrategiaMovimiento* GetEstrategiaMovimiento() const;
     EstrategiaAlimento* GetEstrategiaAlimento() const;
+    EstrategiaMorir* GetEstrategiaMorir() const;
+    float GetUltimoTiempoComida() const;
 
     // Setters
     void SetPos(float _x, float _y);
     void SetVelocidad(float _velocidad);
     void SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento);
     void SetEstrategiaAlimento(EstrategiaAlimento* _alimento);
+    void SetEstrategiaMorir(EstrategiaMorir* _morir);
+    void SetUltimoTiempoComida(float tiempo);
 
 protected:
     float x, y;
@@ -39,4 +45,6 @@ protected:
     Texture2D textura;
     EstrategiaMovimiento* movimiento;
     EstrategiaAlimento* alimento;
+    EstrategiaMorir* morir;
+    float ultimoTiempoComida;
 };

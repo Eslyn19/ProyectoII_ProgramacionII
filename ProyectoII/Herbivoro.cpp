@@ -1,4 +1,5 @@
 #include "Herbivoro.h"
+#include "Criatura.h"
 #include "EstrategiaAlimento.h"
 #include "RecursosContenedor.h"
 

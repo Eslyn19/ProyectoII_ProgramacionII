@@ -134,6 +134,7 @@
     <ClCompile Include="Ecosistema.cpp" />
     <ClCompile Include="Entorno.cpp" />
     <ClCompile Include="EstrategiaAlimento.cpp" />
+    <ClCompile Include="EstrategiaMorir.cpp" />
     <ClCompile Include="EstrategiaMovimiento.cpp" />
     <ClCompile Include="Excepcion.cpp" />
     <ClCompile Include="FabricaConcreta.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Ecosistema.h" />
     <ClInclude Include="Entorno.h" />
     <ClInclude Include="EstrategiaAlimento.h" />
+    <ClInclude Include="EstrategiaMorir.h" />
     <ClInclude Include="EstrategiaMovimiento.h" />
     <ClInclude Include="Estrategias.h" />
     <ClInclude Include="Excepcion.h" />

@@ -10,7 +10,6 @@
 #include "EstrategiaMovimiento.h"
 #include "ContenedorCriaturas.h"
 #include "RecursosContenedor.h"
-#include "Config.h"
 
 #define TITULO_VENTANA "Simulacion Entorno"
 

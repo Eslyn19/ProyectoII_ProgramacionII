@@ -119,6 +119,8 @@ void Entorno::Update() {
     }
 }
 
+Texture2D Entorno::GetFondoActual() const { return fondoActual; }
+
 // Implementación de los métodos del patrón Observer
 void Entorno::AgregarObservador(Observador* observador) {
     if (observador != nullptr) {

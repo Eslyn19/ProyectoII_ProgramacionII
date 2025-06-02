@@ -78,4 +78,7 @@ bool EstrategiaAlimento::HayColisionConRecurso(Criatura* criatura, Recurso* recu
 }
 
 void EstrategiaAlimento::ConsumirRecurso(Criatura* criatura, Recurso* recurso) {
+    if (criatura) {
+        criatura->SetUltimoTiempoComida(GetTime());
+    }
 } 

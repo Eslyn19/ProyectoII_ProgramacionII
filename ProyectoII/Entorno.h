@@ -15,12 +15,12 @@ class Entorno {
 private:
     static Entorno* instancia;
     std::string climaActual;
+   
     Music* musicaActual;
     Music musicaLluvia;
     Music musicaNieve;
     Music musicaNormal;
     bool musicaCargada;
-
     Texture2D fondoActual;
     Texture2D fondoSoleado;
     Texture2D fondoLLuvia;
@@ -38,11 +38,13 @@ public:
     static Entorno* GetInstancia();
     void CambiarClima(const std::string& nuevoClima);
     std::string GetClimaActual() const;
+
+	// metodos de musica y fondo
     void ActualizarMusica();
     void CargarMusicas();
     void LiberarMusicas();
     void Update();
-    Texture2D GetFondoActual() const { return fondoActual; }
+    Texture2D GetFondoActual() const;
     void CargarFondos();
     void LiberarFondos();
     
