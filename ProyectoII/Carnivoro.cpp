@@ -1,12 +1,10 @@
 #include "Carnivoro.h"
+#include "EstrategiaAlimento.h"
+#include "RecursosContenedor.h"
 
-Carnivoro::Carnivoro(const char* ruta, float _x, float _y, int ancho, int _energia, float _velocidad)
-    : Criatura(ruta, _x, _y, ancho, _energia, _velocidad) {
+Carnivoro::Carnivoro(const char* ruta, float _x, float _y, int ancho, int alto, float _velocidad)
+    : Criatura(ruta, _x, _y, ancho, alto, _velocidad) {
     movimiento = new EstrategiaMovimiento();
-}
-
-Carnivoro::~Carnivoro() {
-    UnloadTexture(textura);
 }
 
 void Carnivoro::Dibujar() {
@@ -14,7 +12,10 @@ void Carnivoro::Dibujar() {
 }
 
 void Carnivoro::Actualizar() {
-    if (movimiento) { 
-        movimiento->Mover(this); 
+    if (movimiento) {
+        movimiento->Mover(this);
+    }
+    if (alimento) {
+        alimento->Mover(this);
     }
 }

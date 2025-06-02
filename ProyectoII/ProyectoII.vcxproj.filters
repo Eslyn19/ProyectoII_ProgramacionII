@@ -60,6 +60,18 @@
     <ClCompile Include="EstrategiaMovimiento.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entorno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursosContenedor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursosObserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EstrategiaAlimento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Excepcion.h">
@@ -113,6 +125,21 @@
     <ClInclude Include="EstrategiaMovimiento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Entorno.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursosContenedor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursosObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EstrategiaAlimento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="InitStartup.jpeg">
@@ -139,6 +166,21 @@
     <Image Include="agua.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="ba.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="FondoNature.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="gradient.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Rayo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="FondoSimulacion.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="x64\Debug\Background.mp3">
@@ -148,6 +190,12 @@
       <Filter>Resource Files</Filter>
     </Media>
     <Media Include="simulacion.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="lluvia.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="soleado.mp3">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

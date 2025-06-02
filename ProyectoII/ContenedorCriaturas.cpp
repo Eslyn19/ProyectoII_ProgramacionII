@@ -1,4 +1,5 @@
 #include "ContenedorCriaturas.h"
+#include "EstrategiaMovimiento.h"
 
 // Constructor
 ContenedorCriaturas::ContenedorCriaturas() : capacidad(10), cantidadCriaturas(0) {
@@ -9,7 +10,9 @@ ContenedorCriaturas::ContenedorCriaturas() : capacidad(10), cantidadCriaturas(0)
 }
 
 // Destructor
-ContenedorCriaturas::~ContenedorCriaturas() {}
+ContenedorCriaturas::~ContenedorCriaturas() {
+    delete[] criaturas;
+}
 
 void ContenedorCriaturas::Redimensionar() {
     int nuevaCapacidad = capacidad * 2;
@@ -29,7 +32,7 @@ void ContenedorCriaturas::Redimensionar() {
 }
 
 void ContenedorCriaturas::AgregarCriatura(Criatura* criatura) {
-    if (criatura == nullptr) return; 
+    if (criatura == nullptr) return;
     
     if (cantidadCriaturas >= capacidad) {
         Redimensionar();
@@ -46,6 +49,7 @@ void ContenedorCriaturas::DibujarCriaturas() {
         }
     }
 }
+
 void ContenedorCriaturas::ActualizarCriaturas() {
     for (int i = 0; i < cantidadCriaturas; i++) {
         if (criaturas[i] != nullptr) {
@@ -62,4 +66,15 @@ void ContenedorCriaturas::AplicarEstrategiaMovimiento(EstrategiaMovimiento* estr
             criaturas[i]->SetEstrategiaMovimiento(estrategia);
         }
     }
+}
+
+int ContenedorCriaturas::GetCantidadCriaturas() const {
+	return cantidadCriaturas;
+}
+
+Criatura* ContenedorCriaturas::GetCriatura(int indice) const {
+    if (indice >= 0 && indice < cantidadCriaturas) {
+        return criaturas[indice];
+    }
+    return nullptr;
 }

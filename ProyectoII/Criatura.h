@@ -2,37 +2,41 @@
 #include "raylib.h"
 #include "Estrategias.h"
 #include "EstrategiaMovimiento.h"
+#include "EstrategiaAlimento.h"
+#include <string>
 
-// Implementacion patron Estrategia
 class EstrategiaMovimiento;
+class EstrategiaAlimento;
 
 class Criatura {
 public:
-    Criatura(const char* ruta, float _x, float _y, int ancho, int _energia = 100, float _velocidad = 2.0f);
+    Criatura(const char* ruta, float _x, float _y, int ancho, int alto, float _velocidad);
     virtual ~Criatura();
 
     virtual void Dibujar() = 0;
-    virtual void Actualizar() = 0;
+    virtual void Actualizar();
 
-    // Metodos Get
+    // Getters
     float GetX() const;
     float GetY() const;
-    int GetAnchoPantalla() const;
-    int GetEnergia() const;
+    int GetAncho() const;
+    int GetAlto() const;
     float GetVelocidad() const;
+    EstrategiaMovimiento* GetEstrategiaMovimiento() const;
+    EstrategiaAlimento* GetEstrategiaAlimento() const;
 
-    // Metodos Set
+    // Setters
     void SetPos(float _x, float _y);
-    void SetEnergia(int _energia);
     void SetVelocidad(float _velocidad);
     void SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento);
+    void SetEstrategiaAlimento(EstrategiaAlimento* _alimento);
 
 protected:
     float x, y;
+    int ancho;
+    int alto;
     float velocidad;
-    int energia;
-    int pantallaAncho;
-    Vector2 posicion;
     Texture2D textura;
     EstrategiaMovimiento* movimiento;
-}; 
+    EstrategiaAlimento* alimento;
+};

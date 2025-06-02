@@ -7,15 +7,15 @@ FabricaConcreta::FabricaConcreta() {}
 
 FabricaConcreta::~FabricaConcreta() {}
 
-Herbivoro* FabricaConcreta::CrearHerbivoro(const char* ruta, float x, float y, int ancho, int energia, float velocidad) {
-    return new Herbivoro(ruta, x, y, ancho, energia, velocidad);
+Herbivoro* FabricaConcreta::CrearHerbivoro(const char* ruta, float x, float y, int ancho, int alto, float velocidad) {
+    return new Herbivoro(ruta, x, y, ancho, alto, velocidad);
 }
 
-Carnivoro* FabricaConcreta::CrearCarnivoro(const char* ruta, float x, float y, int ancho, int energia, float velocidad) {
-    return new Carnivoro(ruta, x, y, ancho, energia, velocidad);
+Carnivoro* FabricaConcreta::CrearCarnivoro(const char* ruta, float x, float y, int ancho, int alto, float velocidad) {
+    return new Carnivoro(ruta, x, y, ancho, alto, velocidad);
 }
 
-Omnivoro* FabricaConcreta::CrearOmnivoro(const char* ruta, float x, float y, int ancho, int energia, float velocidad) {
-    return new Omnivoro(ruta, x, y, ancho, energia, velocidad);
+Omnivoro* FabricaConcreta::CrearOmnivoro(const char* ruta, float x, float y, int ancho, int alto, float velocidad) {
+    return new Omnivoro(ruta, x, y, ancho, alto, velocidad);
 } 
 

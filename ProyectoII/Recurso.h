@@ -1,25 +1,30 @@
 #pragma once
+#include <string>
 #include "raylib.h"
+#include "Observador.h"
 
-class Recurso {
-protected:
-    Texture2D textura;
-    float x;
-    float y;
-    int vida;
-    int pantallaAncho;
-
+class Recurso : public Observador {
 public:
-    Recurso(const char* ruta, float _x, float _y, int _vida);
+    Recurso(const char* ruta, float _x, float _y);
     virtual ~Recurso();
 
     virtual void Dibujar() = 0;
-
+    bool EstaVivo() const;
+    bool DebeEliminarse() const;
+    int GetVida() const;
     float GetX() const;
     float GetY() const;
-    int GetVida() const;
-    Texture2D GetTextura() const;
+    float GetAncho() const { return ancho; }
+    float GetAlto() const { return alto; }
+    virtual std::string GetTipoRecurso() const;
+    virtual void Actualizar(const std::string& clima);
 
-    void SetVida(int _vida);
-    void SetPosicion(float _x, float _y);
+protected:
+    float x, y;
+    int vida;
+	float ancho;
+	float alto;
+    Texture2D textura;
+    float tiempoUltimaActualizacion;
+    float tiempoDecaimiento;
 };

@@ -2,10 +2,13 @@ C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Carnivoro.cpp;C:\Users\jar
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\ContenedorCriaturas.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\ContenedorCriaturas.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Criatura.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Criatura.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Ecosistema.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Ecosistema.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Entorno.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Entorno.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\EstrategiaAlimento.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\EstrategiaAlimento.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\EstrategiaMovimiento.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\EstrategiaMovimiento.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Excepcion.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Excepcion.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\FabricaConcreta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\FabricaConcreta.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\FabricaRecursosConcreta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\FabricaRecursosConcreta.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursosObserver.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursosObserver.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Herbivoro.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Herbivoro.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\main.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\main.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Omnivoro.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\Omnivoro.obj
@@ -13,3 +16,4 @@ C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\Recurso.cpp;C:\Users\jaraa
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoAgua.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoAgua.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoCarne.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoCarne.obj
 C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursoPlanta.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursoPlanta.obj
+C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\RecursosContenedor.cpp;C:\Users\jaraa\OneDrive\Desktop\ProyectoII\ProyectoII\x64\Release\RecursosContenedor.obj

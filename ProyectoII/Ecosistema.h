@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <random>
 #include "raylib.h"
 #include "FabricaConcreta.h"
 #include "FabricaAbstracta.h"
@@ -8,6 +9,8 @@
 #include "Estrategias.h"
 #include "EstrategiaMovimiento.h"
 #include "ContenedorCriaturas.h"
+#include "RecursosContenedor.h"
+#include "Config.h"
 
 #define TITULO_VENTANA "Simulacion Entorno"
 
@@ -18,10 +21,15 @@
 
 // Ruta de recursos
 #define INICIO "InitStartup.jpeg"
-#define JUEG0_SIMULACION "FondoNature.jpg"
+#define JUEG0_SIMULACION "FondoSimulacion.jpg"
 #define LOGO "Logo.png"
 #define MUSICA "Background.mp3"
-#define MUSICA_SIMULACION "simulacion.mp3"
+#define HERBIVORO "Herbivoro.png"
+#define CARNIVORO "Carnivoro.png"
+#define OMNIVORO "omnivoro.png"
+#define PLANTA "Planta.png"
+#define CARNE "Carne.png"
+#define AGUA "agua.png"
 
 enum GameScreen { MENU = 0, SIMULACION, SALIR };
 

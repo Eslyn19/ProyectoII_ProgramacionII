@@ -1,9 +1,40 @@
 ﻿#include "Ecosistema.h"
+#include "Entorno.h"
+#include "RecursosContenedor.h"
+#include "RecursosObserver.h"
+#include <thread>
+#include <atomic>
+#include <mutex>
 
 // Variables para guardar palabra en el campo de texto
 char comando[64] = "";
 bool textFieldActivo = false;
 std::string resultadoComando = "";
+
+// Variables para el thread de colisiones
+std::thread threadColisiones;
+std::atomic<bool> ejecutandoColisiones(false);
+std::mutex mutexColisiones;
+
+// Función para el thread de colisiones
+void ThreadColisiones(ContenedorCriaturas* contCriaturas, RecursosContenedor* contRecursos) {
+    while (ejecutandoColisiones) {
+        std::lock_guard<std::mutex> lock(mutexColisiones);
+        int numCriaturas = contCriaturas->GetCantidadCriaturas();
+
+        for (int i = 0; i < numCriaturas; i++) {
+            Criatura* criatura = contCriaturas->GetCriatura(i);
+            if (criatura) {
+                EstrategiaAlimento* estrategia = criatura->GetEstrategiaAlimento();
+                if (estrategia) {
+                    estrategia->Mover(criatura);
+                }
+            }
+        }
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
 
 // Consructor
 Ecosistema::Ecosistema(std::string _nombre) : nombre(_nombre) {}
@@ -11,17 +42,26 @@ Ecosistema::Ecosistema(std::string _nombre) : nombre(_nombre) {}
 // Funcion para crear el campo de texto en pantallas para los comandos
 bool Ecosistema::CampoTexto(Rectangle recCampo, Rectangle recBoton, char* buffer, int bufferSize, bool& activo)
 {
+    // Obtener mouse
     Vector2 mouse = GetMousePosition();
     bool hoverCampo = CheckCollisionPointRec(mouse, recCampo);
     bool clickCampo = hoverCampo && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
     bool clickBoton = CheckCollisionPointRec(mouse, recBoton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
 
-    if (clickCampo) activo = true;
-    else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !hoverCampo && !clickBoton) activo = false;
+    // detectar si se presiono
+    if (clickCampo) {
+        activo = true;
+    }
+    else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !hoverCampo && !clickBoton)
+    {
+        activo = false;
+    }
 
+	// DIbujar campo de texto y boton, incluye transicion de color
     DrawRectangleRec(recCampo, activo ? Fade(BLUE, 0.3f) : Fade(GRAY, 0.5f));
     DrawRectangleLinesEx(recCampo, 2, activo ? BLUE : DARKGRAY);
 
+	// Si el campo de texto esta activo, capturar la entrada del teclado
     if (activo)
     {
         int key = GetCharPressed();
@@ -42,6 +82,7 @@ bool Ecosistema::CampoTexto(Rectangle recCampo, Rectangle recBoton, char* buffer
         }
     }
 
+	// Dibujar el texto en el campo de texto
     if (strlen(buffer) == 0 && !activo)
     {
         DrawText("Escribir comando...", recCampo.x + 5, recCampo.y + 10, 20, Fade(DARKGRAY, 0.5f));
@@ -51,6 +92,7 @@ bool Ecosistema::CampoTexto(Rectangle recCampo, Rectangle recBoton, char* buffer
         DrawText(buffer, recCampo.x + 5, recCampo.y + 10, 20, BLACK);
     }
 
+    // Crear el boton de ejecutar
     DrawRectangleRec(recBoton, GRAY);
     DrawRectangleLinesEx(recBoton, 2, DARKGRAY);
     int textWidth = MeasureText("Ejecutar", 20);
@@ -62,13 +104,16 @@ bool Ecosistema::CampoTexto(Rectangle recCampo, Rectangle recBoton, char* buffer
 // Funcion para crear boton en la interfaz de menu
 bool Ecosistema::CrearBoton(Rectangle rec, const char* texto) 
 {
+    // Verificar mouse
     Vector2 mouse = GetMousePosition();
     bool hover = CheckCollisionPointRec(mouse, rec);
     bool click = hover && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
 
+    // Dibujar boton
     DrawRectangleRec(rec, hover ? Fade(GREEN, 0.7f) : Fade(GRAY, 0.5f));
     DrawRectangleLinesEx(rec, 2, DARKGRAY);
 
+    // botonn centrado
     int textWidth = MeasureText(texto, 20);
     int textX = rec.x + (rec.width - textWidth) / 2;
     int textY = rec.y + (rec.height - 20) / 2;
@@ -79,11 +124,14 @@ bool Ecosistema::CrearBoton(Rectangle rec, const char* texto)
 
 void Ecosistema::IniciarAplicacion()
 {
-	// Definir dimensiones de la ventana
-    const int ancho = 1024;
-	const int altura = 768;
+    // Configurar nivel de log
+    SetTraceLogLevel(LOG_INFO);
 
-	// Crear ventana y audio
+    // Definir dimensiones de la ventana
+    const int ancho = 1024;
+    const int altura = 768;
+
+    // Crear ventana y audio
     InitWindow(ancho, altura, TITULO_VENTANA);
     InitAudioDevice();
     SetTargetFPS(60);
@@ -91,7 +139,6 @@ void Ecosistema::IniciarAplicacion()
     // Asignar recursos
     Image logo = LoadImage(LOGO);
     Texture2D fondo = LoadTexture(INICIO);
-    Texture2D fondoSimulacion = LoadTexture(JUEG0_SIMULACION);
     Music musicaSimulacion = LoadMusicStream(MUSICA_SIMULACION);
     Music musica = LoadMusicStream(MUSICA);
 
@@ -102,27 +149,61 @@ void Ecosistema::IniciarAplicacion()
 
     // Crear criaturas
     FabricaAbstracta* fabrica = new FabricaConcreta();
-    Criatura* herbivoro = fabrica->CrearHerbivoro("Herbivoro.png", 700, 100, 800, 100, VEL_HERB);
-    Criatura* carnivoro = fabrica->CrearCarnivoro("Carnivoro.png", 200, 200, 800, 100, VEL_CARN);
-    Criatura* omnivoro = fabrica->CrearOmnivoro("omnivoro.png", 300, 300, 800, 100, VEL_OMNI);
+    Herbivoro* herbivoro1 = new Herbivoro(HERBIVORO, 100, 200, 100, 100, VEL_HERB);
+    Herbivoro* herbivoro2 = new Herbivoro(HERBIVORO, 600, 400, 100, 100, VEL_HERB);
+    Carnivoro* carnivoro1 = new Carnivoro(CARNIVORO, 500, 200, 100, 100, VEL_CARN);
+    Carnivoro* carnivoro2 = new Carnivoro(CARNIVORO, 700, 500, 100, 100, VEL_CARN);
+    Omnivoro* omnivoro1 = new Omnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
+    Omnivoro* omnivoro2 = new Omnivoro(OMNIVORO, 600, 400, 100, 100, VEL_OMNI);
 
     // Crear recursos
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
-    Recurso* carne = fabricaRecursos->CrearCarne("Carne.png", 400, 400, 100);
-    Recurso* planta = fabricaRecursos->CrearPlanta("Planta.png", 500, 500, 100);
-    Recurso* agua = fabricaRecursos->CrearAgua("agua.png", 600, 600, 100);
+    Recurso* carne = fabricaRecursos->CrearCarne(CARNE, 300, 200);
+    Recurso* planta = fabricaRecursos->CrearPlanta(PLANTA, 300, 500);
+    Recurso* agua = fabricaRecursos->CrearAgua(AGUA, 600, 300);
 
-    // Crear contenedor
-	ContenedorCriaturas ContCriaturas;
+    // Crear contenedor tipo criatura
+    ContenedorCriaturas ContCriaturas;
 
-    // Asignar el movimiento a las criaturas
-	EstrategiaMovimiento* estrategiaMovimiento = new EstrategiaMovimiento();
-	ContCriaturas.AplicarEstrategiaMovimiento(estrategiaMovimiento);
+    // Crear contenedor tipo recurso
+    RecursosContenedor ContRecursos;
 
-    // agregar al Contenedor de criaturas
-    ContCriaturas.AgregarCriatura(herbivoro);
-    ContCriaturas.AgregarCriatura(carnivoro);
-    ContCriaturas.AgregarCriatura(omnivoro);
+    // Crear y configurar la estrategia de alimento para cada criatura
+    EstrategiaAlimento* estrategiaAlimento = new EstrategiaAlimento(&ContRecursos, &ContCriaturas);
+ 
+    // Agregar al Contenedor de criaturas
+    ContCriaturas.AgregarCriatura(herbivoro1);
+    ContCriaturas.AgregarCriatura(herbivoro2);
+    ContCriaturas.AgregarCriatura(carnivoro1);
+    ContCriaturas.AgregarCriatura(carnivoro2);
+    ContCriaturas.AgregarCriatura(omnivoro1);
+    ContCriaturas.AgregarCriatura(omnivoro2);
+
+    // Asignar estrategia de alimento a cada criatura
+    herbivoro1->SetEstrategiaAlimento(estrategiaAlimento);
+    herbivoro2->SetEstrategiaAlimento(estrategiaAlimento);
+    carnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
+    carnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
+    omnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
+    omnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
+
+    // Agregar al Contenedor de recursos
+    ContRecursos.AgregarRecurso(agua);
+    ContRecursos.AgregarRecurso(planta);
+    ContRecursos.AgregarRecurso(carne);
+
+    // Aplicar estrategia de movimient
+
+    // Crear el observador de generación de recursos
+    GeneradorRecursosObserver* generadorRecursos = new GeneradorRecursosObserver(fabricaRecursos, &ContRecursos);
+    Entorno::GetInstancia()->AgregarObservador(generadorRecursos);
+
+    // Obtener la instancia del Singleton de Entorno
+    Entorno* entorno = Entorno::GetInstancia();
+
+    // Iniciar thread de colisiones
+    ejecutandoColisiones = true;
+    threadColisiones = std::thread(ThreadColisiones, &ContCriaturas, &ContRecursos);
 
     GameScreen currentScreen = MENU;
     while (!WindowShouldClose() && currentScreen != SALIR)
@@ -168,30 +249,43 @@ void Ecosistema::IniciarAplicacion()
         
             case SIMULACION:
             {
-				// Cargar musica del modo de juego simulacion
-                UpdateMusicStream(musicaSimulacion);
-                StopMusicStream(musica);
+                // Actualizar música según el clima
+                entorno->Update();
 
-                // Verificar que se cargue correctamente
-                if (!IsMusicStreamPlaying(musicaSimulacion)) {
-                    PlayMusicStream(musicaSimulacion);
-                }
+                // Actualizar el generador de recursos
+                generadorRecursos->Update(GetTime());
 
-				// Cargar imagen de simulacion en la ventana
+                // Cargar imagen de simulacion en la ventana
                 ClearBackground(WHITE);
-                DrawTexture(fondoSimulacion, 0, 0, WHITE);
+                DrawTexture(entorno->GetFondoActual(), 0, 0, WHITE);
 
                 // Crear linea separadora del juego y de los comandos
                 DrawLineEx(Vector2{ 0, 100 }, Vector2{ (float)ancho, 100 }, 3.0f, DARKGRAY);
 
                 // Dibujar las criaturas en la pantalla
                 ContCriaturas.DibujarCriaturas();
-			    ContCriaturas.ActualizarCriaturas();
+                
+                // Actualizar las criaturas usando su estrategia de movimiento
+                for (int i = 0; i < ContCriaturas.GetCantidadCriaturas(); i++) {
+                    Criatura* criatura = ContCriaturas.GetCriatura(i);
+                    if (criatura != nullptr) {
+                        EstrategiaMovimiento* estrategia = criatura->GetEstrategiaMovimiento();
+                        if (estrategia != nullptr) {
+                            estrategia->Mover(criatura);
+                        }
+                        // Aplicar estrategia de alimento para cada criatura
+                        EstrategiaAlimento* estrategiaAlimento = criatura->GetEstrategiaAlimento();
+                        if (estrategiaAlimento != nullptr) {
+                            estrategiaAlimento->Mover(criatura);
+                        }
+                    }
+                }
 
-                // Dibujar los recursos
-			    carne->Dibujar();
-			    planta->Dibujar();
-			    agua->Dibujar();
+                // Solo dibujar los recursos, la actualización se hace por el patrón Observer
+                ContRecursos.DibujarRecursos();
+
+                // Mostrar el clima actual
+                DrawText(("Clima actual: " + entorno->GetClimaActual()).c_str(), 420, 63, 20, BLACK);
 
                 // Boton regresar detiene y carga la musica de las ventanas
                 Rectangle botonRegresar = { 10, 25, 200, 50 };
@@ -211,8 +305,15 @@ void Ecosistema::IniciarAplicacion()
                 Rectangle campoTexto = { (ancho - 300) / 2.0f, 20, 300, 40 };
                 Rectangle botonEjecutar = { campoTexto.x + campoTexto.width + 10, 20, 120, 40 };
 
-                if (CampoTexto(campoTexto, botonEjecutar, comando, 64, textFieldActivo)) { comando[0] = '\0'; }
-
+                if (CampoTexto(campoTexto, botonEjecutar, comando, 64, textFieldActivo)) {
+                    // Procesar comandos de clima
+                    std::string comandoStr(comando);
+                    if (comandoStr == "lluvia" || comandoStr == "nieve" || comandoStr == "soleado") {
+                        entorno->CambiarClima(comandoStr);
+                        resultadoComando = "Clima cambiado a: " + comandoStr;
+                    }
+                    comando[0] = '\0';
+                }
             } 
             break;
         }
@@ -220,23 +321,27 @@ void Ecosistema::IniciarAplicacion()
         EndDrawing();
     }
 
+    // Detener thread de colisiones
+    ejecutandoColisiones = false;
+    if (threadColisiones.joinable()) {
+        threadColisiones.join();
+    }
+
     // Limpiar recursos
     StopMusicStream(musica);
     UnloadMusicStream(musica);
     UnloadTexture(fondo);
-    UnloadTexture(fondoSimulacion);
     UnloadImage(logo);
   
     // Liberar memoria
-    delete herbivoro;
-    delete carnivoro;
-    delete omnivoro;
+    delete herbivoro1;
+    delete herbivoro2;
+    delete carnivoro1;
+    delete carnivoro2;
+    delete omnivoro1;
+    delete omnivoro2;
     delete fabrica;
-    delete carne;
-    delete planta;
-    delete agua;
-    delete fabricaRecursos;
-    delete estrategiaMovimiento;
+    delete generadorRecursos;
 
     // Cerrar archivos
     CloseAudioDevice();
@@ -245,6 +350,10 @@ void Ecosistema::IniciarAplicacion()
 
 // Destructor
 Ecosistema::~Ecosistema() {
+    ejecutandoColisiones = false;
+    if (threadColisiones.joinable()) {
+        threadColisiones.join();
+    }
     CloseAudioDevice();
     CloseWindow();
 }

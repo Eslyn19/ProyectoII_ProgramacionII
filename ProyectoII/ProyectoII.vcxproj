@@ -132,10 +132,13 @@
     <ClCompile Include="ContenedorCriaturas.cpp" />
     <ClCompile Include="Criatura.cpp" />
     <ClCompile Include="Ecosistema.cpp" />
+    <ClCompile Include="Entorno.cpp" />
+    <ClCompile Include="EstrategiaAlimento.cpp" />
     <ClCompile Include="EstrategiaMovimiento.cpp" />
     <ClCompile Include="Excepcion.cpp" />
     <ClCompile Include="FabricaConcreta.cpp" />
     <ClCompile Include="FabricaRecursosConcreta.cpp" />
+    <ClCompile Include="RecursosObserver.cpp" />
     <ClCompile Include="Herbivoro.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Omnivoro.cpp" />
@@ -143,12 +146,15 @@
     <ClCompile Include="RecursoAgua.cpp" />
     <ClCompile Include="RecursoCarne.cpp" />
     <ClCompile Include="RecursoPlanta.cpp" />
+    <ClCompile Include="RecursosContenedor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carnivoro.h" />
     <ClInclude Include="ContenedorCriaturas.h" />
     <ClInclude Include="Criatura.h" />
     <ClInclude Include="Ecosistema.h" />
+    <ClInclude Include="Entorno.h" />
+    <ClInclude Include="EstrategiaAlimento.h" />
     <ClInclude Include="EstrategiaMovimiento.h" />
     <ClInclude Include="Estrategias.h" />
     <ClInclude Include="Excepcion.h" />
@@ -156,26 +162,36 @@
     <ClInclude Include="FabricaConcreta.h" />
     <ClInclude Include="FabricaRecursosAbstracta.h" />
     <ClInclude Include="FabricaRecursosConcreta.h" />
+    <ClInclude Include="RecursosObserver.h" />
     <ClInclude Include="Herbivoro.h" />
+    <ClInclude Include="Observador.h" />
     <ClInclude Include="Omnivoro.h" />
     <ClInclude Include="Recurso.h" />
     <ClInclude Include="RecursoAgua.h" />
     <ClInclude Include="RecursoCarne.h" />
     <ClInclude Include="RecursoPlanta.h" />
+    <ClInclude Include="RecursosContenedor.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="agua.png" />
+    <Image Include="ba.jpg" />
     <Image Include="Carne.png" />
     <Image Include="Carnivoro.png" />
+    <Image Include="FondoNature.jpg" />
+    <Image Include="FondoSimulacion.jpg" />
+    <Image Include="gradient.jpg" />
     <Image Include="Herbivoro.png" />
     <Image Include="InitStartup.jpeg" />
     <Image Include="Logo.png" />
     <Image Include="omnivoro.png" />
     <Image Include="Planta.png" />
+    <Image Include="Rayo.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Boton.mp3" />
+    <Media Include="lluvia.mp3" />
     <Media Include="simulacion.mp3" />
+    <Media Include="soleado.mp3" />
     <Media Include="x64\Debug\Background.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

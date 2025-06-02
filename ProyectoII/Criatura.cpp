@@ -1,38 +1,46 @@
 #include "Criatura.h"
 
-Criatura::Criatura(const char* ruta, float _x, float _y, int ancho, int _energia, float _velocidad) {
+Criatura::Criatura(const char* ruta, float _x, float _y, int ancho, int alto, float _velocidad) {
     x = _x;
     y = _y;
-    posicion = { x, y };
-    pantallaAncho = ancho;
-    energia = _energia;
+    ancho = ancho;
+    alto = alto;
     velocidad = _velocidad;
     textura = LoadTexture(ruta);
     movimiento = nullptr;
+    alimento = nullptr;
 }
 
-// Getters
+void Criatura::Actualizar() {
+    if (movimiento != nullptr) {
+        movimiento->Mover(this);
+    }
+    if (alimento != nullptr) {
+        alimento->Mover(this);
+    }
+}
 
 float Criatura::GetX() const { return x; }
 
 float Criatura::GetY() const { return y; }
 
-int Criatura::GetAnchoPantalla() const { return pantallaAncho; }
+int Criatura::GetAncho() const { return ancho; }
 
-int Criatura::GetEnergia() const { return energia; }
+int Criatura::GetAlto() const { return alto; }
 
 float Criatura::GetVelocidad() const { return velocidad; }
 
-// Setters
+EstrategiaMovimiento* Criatura::GetEstrategiaMovimiento() const { return movimiento; }
 
-void Criatura::SetEnergia(int _energia) { energia = _energia; }
-
-void Criatura::SetVelocidad(float _velocidad) { velocidad = _velocidad; }
+EstrategiaAlimento* Criatura::GetEstrategiaAlimento() const { return alimento; }
 
 void Criatura::SetPos(float _x, float _y) {
-    x = _x;
-    y = _y;
-    posicion = { x, y };
+	x = _x;
+	y = _y;
+}
+
+void Criatura::SetVelocidad(float _velocidad) {
+	velocidad = _velocidad;
 }
 
 void Criatura::SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento) {
@@ -42,9 +50,10 @@ void Criatura::SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento) {
     movimiento = _movimiento;
 }
 
+void Criatura::SetEstrategiaAlimento(EstrategiaAlimento* _alimento) {
+    alimento = _alimento;
+}
+
 Criatura::~Criatura() {
     UnloadTexture(textura);
-    if (movimiento != nullptr) {
-        delete movimiento;
-    }
 } 
