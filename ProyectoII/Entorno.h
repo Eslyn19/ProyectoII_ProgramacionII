@@ -16,6 +16,7 @@ private:
     static Entorno* instancia;
     std::string climaActual;
    
+
     Music* musicaActual;
     Music musicaLluvia;
     Music musicaNieve;

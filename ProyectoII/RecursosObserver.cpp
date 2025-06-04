@@ -11,8 +11,9 @@ GeneradorRecursosObserver::GeneradorRecursosObserver(FabricaRecursoAbstracta* _f
 }
 
 void GeneradorRecursosObserver::GenerarPosicionAleatoria(float pos[2]) {
-    pos[0] = 0.0f + (rand() % 900); // X entre 0 y 899, limites de ventana de juego
-    pos[1] = 130.0f + rand() % 600; // Y entre 130 y 729
+    //  imites de ventana de juego
+    pos[0] = 0.0f + (rand() % 900); // X (0 - 899)
+    pos[1] = 130.0f + rand() % 600; // Y (130 - 729)
 }
 
 Recurso* GeneradorRecursosObserver::GenerarRecursoConPesos(const std::string& clima) {
@@ -56,7 +57,6 @@ void GeneradorRecursosObserver::Update(float tiempoActual) {
         
         if (nuevoRecurso != nullptr) {
             contenedor->AgregarRecurso(nuevoRecurso);
-            TraceLog(LOG_INFO, TextFormat("\nNuevo recurso generado: %s", nuevoRecurso->GetTipoRecurso().c_str())); // mensaje para ventanilla
         }
         
         ultimo = tiempoActual;

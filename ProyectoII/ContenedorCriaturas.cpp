@@ -19,6 +19,7 @@ ContenedorCriaturas::~ContenedorCriaturas() {
     delete[] criaturas;
 }
 
+// Si se llena el arreglo, aumentar el tamano
 void ContenedorCriaturas::Redimensionar() {
     int nuevaCapacidad = capacidad * 2;
     Criatura** nuevoArreglo = new Criatura*[nuevaCapacidad];
@@ -107,4 +108,12 @@ void ContenedorCriaturas::ReorganizarCriaturas() {
         }
     }
     cantidadCriaturas = j;
+}
+
+void ContenedorCriaturas::SetContenedorRecursos(RecursosContenedor* _contenedor) {
+	contenedorRecursos = _contenedor;
+}
+
+RecursosContenedor* ContenedorCriaturas::GetContenedorRecursos() const {
+	return contenedorRecursos;
 }

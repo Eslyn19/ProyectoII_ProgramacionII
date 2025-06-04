@@ -6,7 +6,6 @@
 Herbivoro::Herbivoro(const char* ruta, float _x, float _y, int ancho, int alto, float _velocidad)
     : Criatura(ruta, _x, _y, ancho, alto, _velocidad) {
     movimiento = new EstrategiaMovimiento();
-    // La estrategia de alimento se establecerá después de crear el contenedor de recursos
 }
 
 void Herbivoro::Dibujar() {

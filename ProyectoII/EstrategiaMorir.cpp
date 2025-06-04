@@ -3,7 +3,9 @@
 #include "RecursoCarne.h"
 #include "raylib.h"
 
-#define TIEMPO_SIN_COMER 17.0f // son 15 por defecto, pero se le da un margen de 2 segundos
+// son 15 por defecto, pero se le da un margen de 2 segundos 
+// Si una criatura no come en 15 segundos, muere
+#define TIEMPO_SIN_COMER 17.0f 
 #define RECURSO_RESTOS "restos.png"
 
 bool EstrategiaMorir::simulacionActiva = false;

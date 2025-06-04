@@ -18,8 +18,8 @@ public:
     Criatura* GetCriatura(int indice) const;
     void EliminarCriatura(int indice);
     void ReorganizarCriaturas();
-    void SetContenedorRecursos(RecursosContenedor* _contenedor) { contenedorRecursos = _contenedor; }
-    RecursosContenedor* GetContenedorRecursos() const { return contenedorRecursos; }
+    void SetContenedorRecursos(RecursosContenedor* _contenedor);
+    RecursosContenedor* GetContenedorRecursos() const;
 
 private:
     Criatura** criaturas;

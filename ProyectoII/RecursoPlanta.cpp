@@ -14,6 +14,7 @@ void Planta::Dibujar() {
 std::string Planta::GetTipoRecurso() const { return "Planta"; }
 
 void Planta::Actualizar(const std::string& clima) {
+	// Mostrar cambio de clima en la consola
     if (clima == "lluvia") {
         TraceLog(LOG_INFO, "Planta: El clima lluvioso favorece el crecimiento de las plantas");
     } else if (clima == "soleado") {

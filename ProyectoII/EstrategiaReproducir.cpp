@@ -12,16 +12,15 @@ EstrategiaReproducir::EstrategiaReproducir(RecursosContenedor* _contRecursos, Co
 }
 
 void EstrategiaReproducir::Mover(Criatura* criatura) {
-    const float TIEMPO_COOLDOWN = 1.0f;
+    const float NACIMIENTO = 1.0f;
     if (!criatura || !contCriaturas) {
-        TraceLog(LOG_WARNING, "EstrategiaReproducir: Contenedor de criaturas es nulo");
         return;
     }
 
     float tiempoActual = GetTime();
     
     // Verificar si ha pasado el tiempo de cooldown
-    if (tiempoActual - ultimoTiempoReproduccion < TIEMPO_COOLDOWN) {
+    if (tiempoActual - ultimoTiempoReproduccion < NACIMIENTO) {
         return;
     }
 
@@ -56,7 +55,6 @@ bool EstrategiaReproducir::HayColision(Criatura* c1, Criatura* c2) {
 
 void EstrategiaReproducir::CrearNuevaCriatura(Criatura* criatura) {
     if (!contCriaturas) {
-        TraceLog(LOG_ERROR, "EstrategiaReproducir: No se puede crear criatura - contenedor nulo");
         return;
     }
 
@@ -77,21 +75,19 @@ void EstrategiaReproducir::CrearNuevaCriatura(Criatura* criatura) {
 
     if (nuevaCriatura != nullptr) {
         contCriaturas->AgregarCriatura(nuevaCriatura);
-        TraceLog(LOG_INFO, "EstrategiaReproducir: Nueva criatura agregada. Total: %d", contCriaturas->GetCantidadCriaturas());
-    } else {
-        TraceLog(LOG_ERROR, "EstrategiaReproducir: No se pudo crear la nueva criatura");
-    }
+    } 
 
     delete fabrica;
 }
 
 float EstrategiaReproducir::GenerarPosicionAleatoriaX() {
-    return static_cast<float>(GetRandomValue(0, 899));
+    return (float)GetRandomValue(0, 899);  
 }
 
 float EstrategiaReproducir::GenerarPosicionAleatoriaY() {
-    return static_cast<float>(GetRandomValue(200, 800));
+    return (float)GetRandomValue(200, 800);  
 }
+
 
 void EstrategiaReproducir::ResetearContador() {
     ultimoTiempoReproduccion = 0;

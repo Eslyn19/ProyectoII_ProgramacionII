@@ -125,9 +125,6 @@ bool Ecosistema::CrearBoton(Rectangle rec, const char* texto)
 
 void Ecosistema::IniciarAplicacion()
 {
-    // Configurar nivel de log
-    SetTraceLogLevel(LOG_INFO);
-
     // Definir dimensiones de la ventana
     const int ancho = 1024;
     const int altura = 768;
@@ -157,12 +154,12 @@ void Ecosistema::IniciarAplicacion()
     Criatura* herbivoro6 = fabrica->CrearHerbivoro(HERBIVORO, 150, 400, 100, 100, VEL_HERB);
     Criatura* carnivoro1 = fabrica->CrearCarnivoro(CARNIVORO, 400, 200, 100, 100, VEL_CARN);
     Criatura* carnivoro2 = fabrica->CrearCarnivoro(CARNIVORO, 240, 600, 100, 100, VEL_CARN);
-    Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
+    Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, 800, 750, 100, 100, VEL_OMNI);
     Criatura* omnivoro2 = fabrica->CrearOmnivoro(OMNIVORO, 600, 700, 100, 100, VEL_OMNI);
     Criatura* omnivoro3 = fabrica->CrearOmnivoro(OMNIVORO, 400, 500, 100, 100, VEL_OMNI);
     Criatura* omnivoro4 = fabrica->CrearOmnivoro(OMNIVORO, 900, 300, 100, 100, VEL_OMNI);
     Criatura* omnivoro5 = fabrica->CrearOmnivoro(OMNIVORO, 500, 100, 100, 100, VEL_OMNI);
-    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, 100, 500, 100, 100, VEL_OMNI);
+    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, 140, 560, 100, 100, VEL_OMNI);
 
     // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();

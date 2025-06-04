@@ -51,6 +51,7 @@ void EstrategiaMovimiento::Mover(Criatura* criatura) {
         int numCriaturas = contenedorCriaturas->GetCantidadCriaturas();
         for (int i = 0; i < numCriaturas; i++) {
             Criatura* otraCriatura = contenedorCriaturas->GetCriatura(i);
+
             if (otraCriatura && otraCriatura != criatura) {
                 float dx = x - otraCriatura->GetX();
                 float dy = y - otraCriatura->GetY();

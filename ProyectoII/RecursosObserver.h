@@ -1,10 +1,9 @@
 #pragma once
-
+#include <cstdlib>  
+#include <ctime>  
 #include "Observador.h"
 #include "FabricaRecursosAbstracta.h"
 #include "RecursosContenedor.h"
-#include <cstdlib>  
-#include <ctime>  
 
 #define CARNE_IMG "carne.png"
 #define PLANTA_IMG "planta.png"

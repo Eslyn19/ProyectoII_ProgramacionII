@@ -1,11 +1,11 @@
 #pragma once
+#include <string>
 #include "raylib.h"
 #include "Estrategias.h"
 #include "EstrategiaMovimiento.h"
 #include "EstrategiaAlimento.h"
 #include "EstrategiaMorir.h"
 #include "EstrategiaReproducir.h"
-#include <string>
 
 class EstrategiaMovimiento;
 class EstrategiaAlimento;
@@ -47,9 +47,12 @@ protected:
     int alto;
     float velocidad;
     Texture2D textura;
+
+	// Estrategias
     EstrategiaMovimiento* movimiento;
     EstrategiaAlimento* alimento;
     EstrategiaMorir* morir;
     EstrategiaReproducir* reproducir;
+
     float ultimoTiempoComida;
 };
