@@ -1,24 +1,40 @@
-📚 **Titulo**
+📚 **Simulacion de ecosistema**
 ---
 ✨ _Funcionalidad General_
 ---
 
-  aqui explicamos el programa
+  El proyecto consiste en crear criaturas aleatoriamente dependiendo de su alimentacion donde estas buscaran la supervivencia mediante el clima y los recursos. El ecosistema se base en herbivoros
+  carnivoros y omnivoros donde estos pueden llegar a morir, reproducirse, moverse y alimentarse.
 
 🚩 _Características Principales_
 ---
 
-  aqui lo principal de las clases
+  ⚫ Aplicacion ejecutable.
+  
+  ⚫ Creado mediante patrones de diseño de C++.
+  
+  ⚫ Implementacion gráfica Raylib.
+  
+  ⚫ Cambio de clima mediante interfaz.
 
 🧱 _Estructura del Proyecto_
 ---
 
-  las clases explicadas
+  ► Patrones de diseño
 
-📂 _Módulos Principales_
----
+  ⚫ Singleton: Controlador unico del entorno.
 
-  que use en el proyecto
+  ⚫ AbstractFactory: Creador abstracto de recuros & criaturas.
+
+  ⚫ Observer: interacción al entorno.
+
+  ⚫ Strategy: Implementación en los comportamientos de criaturas.
+
+   ► Seres del entorno
+
+   ⚫ Criatura: Herviboro, omnivoros y carnivoros.
+   
+   ⚫ Recursos: Agua, plantas, comida.
 
 🛠️ _Requisitos del Sistema_
 ---    
@@ -28,33 +44,34 @@
   
     📦 Dependencias gestionadas con vcpkg.
 
-📥 Instalación de jsoncpp con vcpkg & bash
-    
-    $ git clone https://github.com/Eslyn19/ProyectoII_ProgramacionII.git
-   
-    $ cd <ProyectoII>
+📥 **Instalación de raylib con vcpkg & GitBash**
 
     $ git clone https://github.com/microsoft/vcpkg.git
 
     $ cd vcpkg
 
-    $ ./bootstrap-vcpkg.sh
+    $ ./bootstrap-vcpkg.bat
 
     $ cd ..
 
-    $ ./vcpkg/vcpkg install jsoncpp
----
-🚀 _Compilación y Ejecución_
+    $ ./vcpkg/vcpkg install raylib
+
+    $ ./vcpkg integrate install
+
+
+🚀 **Compilación y Ejecución**
     
     📁 Abrir el proyecto en tu IDE.
 
     ⚙️ Compilar la solución.
 
     ▶️ Ejecutar el programa.
+
+🧑‍💻 **Autor**
 ---
-💻 _Uso del Sistema_
----
-🧑‍💻 _Autor_
+
 Eslyn Andrés Jara Calderón
-📆 _Fecha_
-13/12/2012
+
+Universidad Nacional de Costa Rica
+
+---
