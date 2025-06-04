@@ -3,6 +3,7 @@
 #include "Criatura.h"
 #include "ContenedorCriaturas.h"
 #include "RecursosContenedor.h"
+#include "raylib.h"
 
 #define VEL_CARNI 3.0f
 #define VEL_HERBI 2.2f
@@ -19,10 +20,17 @@ private:
     int vecesComido;
     float tiempoInicio;
     float tiempoLimite;
+    float ultimoTiempoReproduccion;
 
 public:
     EstrategiaReproducir(RecursosContenedor* _contRecursos, ContenedorCriaturas* _contCriaturas);
     void Mover(Criatura* criatura) override;
 	bool Alimentar(Criatura* criatura, Recurso* recurso) override { return false;}
     void ResetearContador();
+    bool SonMismoTipo(Criatura* c1, Criatura* c2);
+    void CrearNuevaCriatura(Criatura* criatura);
+    bool HayColision(Criatura* c1, Criatura* c2);
+
+    float GenerarPosicionAleatoriaX();
+    float GenerarPosicionAleatoriaY();
 }; 

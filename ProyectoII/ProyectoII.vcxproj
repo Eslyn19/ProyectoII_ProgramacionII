@@ -188,7 +188,6 @@
     <Image Include="LogoExe.ico" />
     <Image Include="omnivoro.png" />
     <Image Include="Planta.png" />
-    <Image Include="Rayo.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Boton.mp3" />

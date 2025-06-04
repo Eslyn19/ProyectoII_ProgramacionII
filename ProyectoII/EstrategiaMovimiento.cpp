@@ -46,7 +46,7 @@ void EstrategiaMovimiento::Mover(Criatura* criatura) {
         velocidadY = -velocidadY;
     }
 
-    // Detectar colisiones con otras criaturas
+    // Detectar colisiones con otras criaturas solo para carnívoros
     if (contenedorCriaturas) {
         int numCriaturas = contenedorCriaturas->GetCantidadCriaturas();
         for (int i = 0; i < numCriaturas; i++) {
@@ -65,13 +65,6 @@ void EstrategiaMovimiento::Mover(Criatura* criatura) {
                             return; 
                         }
                     }
-                    
-                    // Si no es carnívoro o no pudo comer, rebota
-                    float angulo = atan2(dy, dx);
-                    velocidadX = -velocidadX;
-                    velocidadY = -velocidadY;
-                    x = otraCriatura->GetX() + cos(angulo) * 60.0f;
-                    y = otraCriatura->GetY() + sin(angulo) * 60.0f;
                 }
             }
         }
