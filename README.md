@@ -3,8 +3,7 @@
 ✨ _Funcionalidad General_
 ---
 
-  El proyecto consiste en crear criaturas aleatoriamente dependiendo de su alimentacion donde estas buscaran la supervivencia mediante el clima y los recursos. El ecosistema se base en herbivoros
-  carnivoros y omnivoros donde estos pueden llegar a morir, reproducirse, moverse y alimentarse.
+ El proyecto consiste en desarrollar una simulación de ecosistema donde criaturas con distintos tipos de alimentación —herbívoros, carnívoros y omnívoros— buscan sobrevivir mediante acciones como moverse, alimentarse, reproducirse y adaptarse al entorno. Las criaturas se generan aleatoriamente y su comportamiento depende de factores como el clima, la disponibilidad de recursos y su nivel de energía. El ecosistema evoluciona dinámicamente: los seres vivos pueden morir por hambre, edad o condiciones adversas, mientras que el clima y los recursos influyen constantemente en su supervivencia. La simulación se representa visualmente, permitiendo observar la interacción entre las criaturas y su entorno en tiempo real.
 
 🚩 _Características Principales_
 ---
