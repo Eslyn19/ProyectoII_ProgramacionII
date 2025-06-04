@@ -1,6 +1,7 @@
 #pragma once
 #include "Criatura.h"
 #include "Estrategias.h"
+#include "RecursosContenedor.h"
 
 class EstrategiaMovimiento;
 
@@ -17,10 +18,13 @@ public:
     Criatura* GetCriatura(int indice) const;
     void EliminarCriatura(int indice);
     void ReorganizarCriaturas();
+    void SetContenedorRecursos(RecursosContenedor* _contenedor) { contenedorRecursos = _contenedor; }
+    RecursosContenedor* GetContenedorRecursos() const { return contenedorRecursos; }
 
 private:
     Criatura** criaturas;
     int capacidad;
     int cantidadCriaturas;
+    RecursosContenedor* contenedorRecursos;
     void Redimensionar();
 };

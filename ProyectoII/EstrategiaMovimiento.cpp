@@ -1,8 +1,12 @@
 #include "EstrategiaMovimiento.h"
 #include "ContenedorCriaturas.h"
 #include "raylib.h"
-#include "math.h"
+#include <math.h>
 #include "Criatura.h"
+#include "Carnivoro.h"
+#include "Herbivoro.h"
+#include "Omnivoro.h"
+#include "RecursoCarne.h"
 
 EstrategiaMovimiento::EstrategiaMovimiento() : velocidadX(0), velocidadY(0), contenedorCriaturas(nullptr) {}
 
@@ -40,6 +44,37 @@ void EstrategiaMovimiento::Mover(Criatura* criatura) {
     else if (y + ancho_criatura >= alto_pantalla) {
         y = alto_pantalla - ancho_criatura;
         velocidadY = -velocidadY;
+    }
+
+    // Detectar colisiones con otras criaturas
+    if (contenedorCriaturas) {
+        int numCriaturas = contenedorCriaturas->GetCantidadCriaturas();
+        for (int i = 0; i < numCriaturas; i++) {
+            Criatura* otraCriatura = contenedorCriaturas->GetCriatura(i);
+            if (otraCriatura && otraCriatura != criatura) {
+                float dx = x - otraCriatura->GetX();
+                float dy = y - otraCriatura->GetY();
+                float distancia = sqrt(dx * dx + dy * dy);
+                
+                if (distancia < 50.0f) {
+                    Carnivoro* carnivoro = dynamic_cast<Carnivoro*>(criatura);
+                    if (carnivoro) {
+                        if (dynamic_cast<Herbivoro*>(otraCriatura) || dynamic_cast<Omnivoro*>(otraCriatura)) {
+                            contenedorCriaturas->EliminarCriatura(i);
+                            criatura->SetUltimoTiempoComida(GetTime());
+                            return; 
+                        }
+                    }
+                    
+                    // Si no es carnívoro o no pudo comer, rebota
+                    float angulo = atan2(dy, dx);
+                    velocidadX = -velocidadX;
+                    velocidadY = -velocidadY;
+                    x = otraCriatura->GetX() + cos(angulo) * 60.0f;
+                    y = otraCriatura->GetY() + sin(angulo) * 60.0f;
+                }
+            }
+        }
     }
 
     criatura->SetPos(x, y);
