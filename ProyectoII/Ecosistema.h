@@ -42,4 +42,5 @@ public:
 	~Ecosistema();
 private:
 	std::string nombre;
+	bool simulacionActiva;
 };

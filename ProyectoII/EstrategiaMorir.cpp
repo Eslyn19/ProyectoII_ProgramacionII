@@ -4,26 +4,31 @@
 #include "raylib.h"
 
 #define TIEMPO_SIN_COMER 17.0f // son 15 por defecto, pero se le da un margen de 2 segundos
+#define RECURSO_RESTOS "restos.png"
+
+bool EstrategiaMorir::simulacionActiva = false;
 
 EstrategiaMorir::EstrategiaMorir(RecursosContenedor* _contenedorRecursos, ContenedorCriaturas* _contenedorCriaturas)
     : contenedorRecursos(_contenedorRecursos), contenedorCriaturas(_contenedorCriaturas) {
 }
 
 void EstrategiaMorir::Mover(Criatura* criatura) {
-    if (!criatura) {
+    if (!criatura || !simulacionActiva) {
         return;
     }
     VerificarTiempoSinComer(criatura);
 }
 
 bool EstrategiaMorir::Alimentar(Criatura* criatura, Recurso* recurso) {
-    if (criatura && recurso) {
+    if (criatura && recurso && simulacionActiva) {
         criatura->SetUltimoTiempoComida(GetTime());
     }
     return false;
 }
 
 void EstrategiaMorir::VerificarTiempoSinComer(Criatura* criatura) {
+    if (!simulacionActiva) return;
+
     float tiempoActual = GetTime();
     float ultimoTiempoComida = criatura->GetUltimoTiempoComida();
     
@@ -36,7 +41,7 @@ void EstrategiaMorir::VerificarTiempoSinComer(Criatura* criatura) {
 void EstrategiaMorir::GenerarRestos(Criatura* criatura) {
     if (!contenedorRecursos) return;
     
-    Carne* restos = new Carne("restos.png", criatura->GetX(), criatura->GetY());
+    Carne* restos = new Carne(RECURSO_RESTOS, criatura->GetX(), criatura->GetY());
     contenedorRecursos->AgregarRecurso(restos);
 }
 

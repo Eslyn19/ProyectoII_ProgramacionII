@@ -12,12 +12,10 @@
  * |
  * Link Github: https://github.com/Eslyn19/ProyectoII_ProgramacionII
  * |
- * -------------------------------------------------------------------+
- * |
- * Creditos imagenes & musica
+ * Creditos imagenes
  * https://www.flaticon.com/free-icons/dinosaur
  * https://es.vecteezy.com
- * Quincas Moreira - Robot City 8bit Music
+ * |
  * -------------------------------------------------------------------+
 */
 

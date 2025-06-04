@@ -10,6 +10,7 @@ Criatura::Criatura(const char* ruta, float _x, float _y, int ancho, int alto, fl
     movimiento = nullptr;
     alimento = nullptr;
     morir = nullptr;
+    reproducir = nullptr;
     ultimoTiempoComida = GetTime();
 }
 
@@ -22,6 +23,9 @@ void Criatura::Actualizar() {
     }
     if (morir != nullptr) {
         morir->Mover(this);
+    }
+    if (reproducir != nullptr) {
+        reproducir->Mover(this);
     }
 }
 
@@ -40,6 +44,8 @@ EstrategiaMovimiento* Criatura::GetEstrategiaMovimiento() const { return movimie
 EstrategiaAlimento* Criatura::GetEstrategiaAlimento() const { return alimento; }
 
 EstrategiaMorir* Criatura::GetEstrategiaMorir() const { return morir; }
+
+EstrategiaReproducir* Criatura::GetEstrategiaReproducir() const { return reproducir; }
 
 float Criatura::GetUltimoTiempoComida() const { return ultimoTiempoComida; }
 
@@ -70,6 +76,13 @@ void Criatura::SetEstrategiaMorir(EstrategiaMorir* _morir) {
         delete morir;
     }
     morir = _morir;
+}
+
+void Criatura::SetEstrategiaReproducir(EstrategiaReproducir* _reproducir) {
+    if (reproducir != nullptr) {
+        delete reproducir;
+    }
+    reproducir = _reproducir;
 }
 
 Criatura::~Criatura() {

@@ -26,9 +26,6 @@ void RecursosContenedor::EliminarRecurso(int indice) {
     // Eliminar el recurso de los observadores antes de eliminarlo
     Entorno::GetInstancia()->EliminarObservador(recursoVec[indice]);
 
-    // Eliminar el recurso
-    delete recursoVec[indice];
-
     // Mover el último recurso a la posición eliminada
     if (indice < cantidadRecursos - 1) {
         recursoVec[indice] = recursoVec[cantidadRecursos - 1];

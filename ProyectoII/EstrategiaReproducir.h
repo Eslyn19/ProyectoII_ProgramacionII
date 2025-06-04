@@ -1,0 +1,28 @@
+#pragma once
+#include "Estrategias.h"
+#include "Criatura.h"
+#include "ContenedorCriaturas.h"
+#include "RecursosContenedor.h"
+
+#define VEL_CARNI 3.0f
+#define VEL_HERBI 2.2f
+#define VEL_OMNIV 2.6f
+
+#define HERBIVORO_IMG "Herbivoro.png"
+#define CARNIVORO_IMG "Carnivoro.png"
+#define OMNIVORO_IMG "omnivoro.png"
+
+class EstrategiaReproducir : public Estrategia {
+private:
+    RecursosContenedor* contRecursos;
+    ContenedorCriaturas* contCriaturas;
+    int vecesComido;
+    float tiempoInicio;
+    float tiempoLimite;
+
+public:
+    EstrategiaReproducir(RecursosContenedor* _contRecursos, ContenedorCriaturas* _contCriaturas);
+    void Mover(Criatura* criatura) override;
+	bool Alimentar(Criatura* criatura, Recurso* recurso) override { return false;}
+    void ResetearContador();
+}; 

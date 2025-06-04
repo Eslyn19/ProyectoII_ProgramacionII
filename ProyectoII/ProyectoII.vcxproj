@@ -136,7 +136,7 @@
     <ClCompile Include="EstrategiaAlimento.cpp" />
     <ClCompile Include="EstrategiaMorir.cpp" />
     <ClCompile Include="EstrategiaMovimiento.cpp" />
-    <ClCompile Include="Excepcion.cpp" />
+    <ClCompile Include="EstrategiaReproducir.cpp" />
     <ClCompile Include="FabricaConcreta.cpp" />
     <ClCompile Include="FabricaRecursosConcreta.cpp" />
     <ClCompile Include="RecursosObserver.cpp" />
@@ -158,8 +158,8 @@
     <ClInclude Include="EstrategiaAlimento.h" />
     <ClInclude Include="EstrategiaMorir.h" />
     <ClInclude Include="EstrategiaMovimiento.h" />
+    <ClInclude Include="EstrategiaReproducir.h" />
     <ClInclude Include="Estrategias.h" />
-    <ClInclude Include="Excepcion.h" />
     <ClInclude Include="FabricaAbstracta.h" />
     <ClInclude Include="FabricaConcreta.h" />
     <ClInclude Include="FabricaRecursosAbstracta.h" />

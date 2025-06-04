@@ -2,6 +2,7 @@
 #include "Entorno.h"
 #include "RecursosContenedor.h"
 #include "RecursosObserver.h"
+#include "EstrategiaMorir.h"
 #include <thread>
 #include <atomic>
 #include <mutex>
@@ -37,7 +38,7 @@ void ThreadColisiones(ContenedorCriaturas* contCriaturas, RecursosContenedor* co
 }
 
 // Consructor
-Ecosistema::Ecosistema(std::string _nombre) : nombre(_nombre) {}
+Ecosistema::Ecosistema(std::string _nombre) : nombre(_nombre), simulacionActiva(false) {}
 
 // Funcion para crear el campo de texto en pantallas para los comandos
 bool Ecosistema::CampoTexto(Rectangle recCampo, Rectangle recBoton, char* buffer, int bufferSize, bool& activo)
@@ -175,7 +176,8 @@ void Ecosistema::IniciarAplicacion()
 
     // Crear y configurar la estrategia de alimento para cada criatura
     EstrategiaAlimento* estrategiaAlimento = new EstrategiaAlimento(&ContRecursos, &ContCriaturas);
- 
+    EstrategiaReproducir* estrategiaReproducir = new EstrategiaReproducir(&ContRecursos, &ContCriaturas);
+
     // Agregar al Contenedor de criaturas
     ContCriaturas.AgregarCriatura(herbivoro1);
     ContCriaturas.AgregarCriatura(herbivoro2);
@@ -191,6 +193,14 @@ void Ecosistema::IniciarAplicacion()
     carnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
+
+    // Asignar estrategia de reproducción a cada criatura
+    herbivoro1->SetEstrategiaReproducir(estrategiaReproducir);
+    herbivoro2->SetEstrategiaReproducir(estrategiaReproducir);
+    carnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
+    carnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
+    omnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
+    omnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
 
     // Crear y asignar estrategia de muerte individual para cada criatura
     herbivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
@@ -254,6 +264,15 @@ void Ecosistema::IniciarAplicacion()
                 // Verificar si se cambia a simulacion
                 if (CrearBoton(botonSimular, "Iniciar Simulacion")) {
                     currentScreen = SIMULACION;
+                    simulacionActiva = true;
+                    EstrategiaMorir::SetSimulacionActiva(true);
+                    // Reiniciar el tiempo de última comida de todas las criaturas
+                    for (int i = 0; i < ContCriaturas.GetCantidadCriaturas(); i++) {
+                        Criatura* criatura = ContCriaturas.GetCriatura(i);
+                        if (criatura != nullptr) {
+                            criatura->SetUltimoTiempoComida(GetTime());
+                        }
+                    }
                 }
 
                 // Verificar si cambia a salir
@@ -281,23 +300,29 @@ void Ecosistema::IniciarAplicacion()
                 // Dibujar las criaturas en la pantalla
                 ContCriaturas.DibujarCriaturas();
                 
-                // Actualizar las criaturas usando su estrategia de movimiento
+                // Actualizar las criaturas usando sus estrategias
                 for (int i = 0; i < ContCriaturas.GetCantidadCriaturas(); i++) {
                     Criatura* criatura = ContCriaturas.GetCriatura(i);
                     if (criatura != nullptr) {
+                        // Actualizar movimiento
                         EstrategiaMovimiento* estrategia = criatura->GetEstrategiaMovimiento();
                         if (estrategia != nullptr) {
                             estrategia->Mover(criatura);
                         }
-                        // Aplicar estrategia de alimento para cada criatura
+                        // Actualizar alimento
                         EstrategiaAlimento* estrategiaAlimento = criatura->GetEstrategiaAlimento();
                         if (estrategiaAlimento != nullptr) {
                             estrategiaAlimento->Mover(criatura);
                         }
-                        // Aplicar estrategia de muerte para cada criatura
+                        // Actualizar muerte
                         EstrategiaMorir* estrategiaMorir = criatura->GetEstrategiaMorir();
                         if (estrategiaMorir != nullptr) {
                             estrategiaMorir->Mover(criatura);
+                        }
+                        // Actualizar reproducción
+                        EstrategiaReproducir* estrategiaReproducir = criatura->GetEstrategiaReproducir();
+                        if (estrategiaReproducir != nullptr) {
+                            estrategiaReproducir->Mover(criatura);
                         }
                     }
                 }
@@ -313,12 +338,16 @@ void Ecosistema::IniciarAplicacion()
                 if (CrearBoton(botonRegresar, "Regresar"))
                 {
                     currentScreen = MENU;
+                    simulacionActiva = false;
+                    EstrategiaMorir::SetSimulacionActiva(false);
                     PlayMusicStream(musica);
                 }
 
                 if (IsKeyPressed(KEY_ESCAPE))
                 {
                     currentScreen = MENU;
+                    simulacionActiva = false;
+                    EstrategiaMorir::SetSimulacionActiva(false);
                     PlayMusicStream(musica);
                 }
 

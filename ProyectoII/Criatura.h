@@ -4,11 +4,13 @@
 #include "EstrategiaMovimiento.h"
 #include "EstrategiaAlimento.h"
 #include "EstrategiaMorir.h"
+#include "EstrategiaReproducir.h"
 #include <string>
 
 class EstrategiaMovimiento;
 class EstrategiaAlimento;
 class EstrategiaMorir;
+class EstrategiaReproducir;
 
 class Criatura {
 public:
@@ -27,6 +29,7 @@ public:
     EstrategiaMovimiento* GetEstrategiaMovimiento() const;
     EstrategiaAlimento* GetEstrategiaAlimento() const;
     EstrategiaMorir* GetEstrategiaMorir() const;
+    EstrategiaReproducir* GetEstrategiaReproducir() const;
     float GetUltimoTiempoComida() const;
 
     // Setters
@@ -35,6 +38,7 @@ public:
     void SetEstrategiaMovimiento(EstrategiaMovimiento* _movimiento);
     void SetEstrategiaAlimento(EstrategiaAlimento* _alimento);
     void SetEstrategiaMorir(EstrategiaMorir* _morir);
+    void SetEstrategiaReproducir(EstrategiaReproducir* _reproducir);
     void SetUltimoTiempoComida(float tiempo);
 
 protected:
@@ -46,5 +50,6 @@ protected:
     EstrategiaMovimiento* movimiento;
     EstrategiaAlimento* alimento;
     EstrategiaMorir* morir;
+    EstrategiaReproducir* reproducir;
     float ultimoTiempoComida;
 };
