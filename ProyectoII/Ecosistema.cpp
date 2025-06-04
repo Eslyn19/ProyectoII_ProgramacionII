@@ -147,18 +147,22 @@ void Ecosistema::IniciarAplicacion()
     SetMusicVolume(musica, 0.5f);
     PlayMusicStream(musica);
 
-    // Crear criaturas
+    // Crear criaturas usando la fábrica
     FabricaAbstracta* fabrica = new FabricaConcreta();
-    Herbivoro* herbivoro1 = new Herbivoro(HERBIVORO, 100, 700, 100, 100, VEL_HERB);
-    Herbivoro* herbivoro2 = new Herbivoro(HERBIVORO, 600, 400, 100, 100, VEL_HERB);
-    Herbivoro* herbivoro3 = new Herbivoro(HERBIVORO, 300, 200, 100, 100, VEL_HERB);
-    Herbivoro* herbivoro4 = new Herbivoro(HERBIVORO, 800, 600, 100, 100, VEL_HERB);
-    Carnivoro* carnivoro1 = new Carnivoro(CARNIVORO, 500, 200, 100, 100, VEL_CARN);
-    Carnivoro* carnivoro2 = new Carnivoro(CARNIVORO, 700, 500, 100, 100, VEL_CARN);
-    Omnivoro* omnivoro1 = new Omnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
-    Omnivoro* omnivoro2 = new Omnivoro(OMNIVORO, 600, 700, 100, 100, VEL_OMNI);
-    Omnivoro* omnivoro3 = new Omnivoro(OMNIVORO, 400, 500, 100, 100, VEL_OMNI);
-    Omnivoro* omnivoro4 = new Omnivoro(OMNIVORO, 900, 300, 100, 100, VEL_OMNI);
+    Criatura* herbivoro1 = fabrica->CrearHerbivoro(HERBIVORO, 100, 700, 100, 100, VEL_HERB);
+    Criatura* herbivoro2 = fabrica->CrearHerbivoro(HERBIVORO, 600, 400, 100, 100, VEL_HERB);
+    Criatura* herbivoro3 = fabrica->CrearHerbivoro(HERBIVORO, 300, 200, 100, 100, VEL_HERB);
+    Criatura* herbivoro4 = fabrica->CrearHerbivoro(HERBIVORO, 800, 600, 100, 100, VEL_HERB);
+    Criatura* herbivoro5 = fabrica->CrearHerbivoro(HERBIVORO, 450, 300, 100, 100, VEL_HERB);
+    Criatura* herbivoro6 = fabrica->CrearHerbivoro(HERBIVORO, 150, 400, 100, 100, VEL_HERB);
+    Criatura* carnivoro1 = fabrica->CrearCarnivoro(CARNIVORO, 400, 200, 100, 100, VEL_CARN);
+    Criatura* carnivoro2 = fabrica->CrearCarnivoro(CARNIVORO, 240, 600, 100, 100, VEL_CARN);
+    Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, 200, 300, 100, 100, VEL_OMNI);
+    Criatura* omnivoro2 = fabrica->CrearOmnivoro(OMNIVORO, 600, 700, 100, 100, VEL_OMNI);
+    Criatura* omnivoro3 = fabrica->CrearOmnivoro(OMNIVORO, 400, 500, 100, 100, VEL_OMNI);
+    Criatura* omnivoro4 = fabrica->CrearOmnivoro(OMNIVORO, 900, 300, 100, 100, VEL_OMNI);
+    Criatura* omnivoro5 = fabrica->CrearOmnivoro(OMNIVORO, 500, 100, 100, 100, VEL_OMNI);
+    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, 100, 500, 100, 100, VEL_OMNI);
 
     // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
@@ -190,12 +194,16 @@ void Ecosistema::IniciarAplicacion()
     ContCriaturas.AgregarCriatura(herbivoro2);
     ContCriaturas.AgregarCriatura(herbivoro3);
     ContCriaturas.AgregarCriatura(herbivoro4);
+    ContCriaturas.AgregarCriatura(herbivoro5);
+    ContCriaturas.AgregarCriatura(herbivoro6);
     ContCriaturas.AgregarCriatura(carnivoro1);
     ContCriaturas.AgregarCriatura(carnivoro2);
     ContCriaturas.AgregarCriatura(omnivoro1);
     ContCriaturas.AgregarCriatura(omnivoro2);
     ContCriaturas.AgregarCriatura(omnivoro3);
     ContCriaturas.AgregarCriatura(omnivoro4);
+    ContCriaturas.AgregarCriatura(omnivoro5);
+    ContCriaturas.AgregarCriatura(omnivoro6);
 
     // Crear y asignar estrategia de movimiento individual para cada criatura
     EstrategiaMovimiento* estrategiaMovimiento1 = new EstrategiaMovimiento();
@@ -208,6 +216,11 @@ void Ecosistema::IniciarAplicacion()
     EstrategiaMovimiento* estrategiaMovimiento8 = new EstrategiaMovimiento();
     EstrategiaMovimiento* estrategiaMovimiento9 = new EstrategiaMovimiento();
     EstrategiaMovimiento* estrategiaMovimiento10 = new EstrategiaMovimiento();
+    EstrategiaMovimiento* estrategiaMovimiento11 = new EstrategiaMovimiento();
+    EstrategiaMovimiento* estrategiaMovimiento12 = new EstrategiaMovimiento();
+    EstrategiaMovimiento* estrategiaMovimiento13 = new EstrategiaMovimiento();
+    EstrategiaMovimiento* estrategiaMovimiento14 = new EstrategiaMovimiento();
+    EstrategiaMovimiento* estrategiaMovimiento15 = new EstrategiaMovimiento();
 
     estrategiaMovimiento1->SetContenedorCriaturas(&ContCriaturas);
     estrategiaMovimiento2->SetContenedorCriaturas(&ContCriaturas);
@@ -219,53 +232,74 @@ void Ecosistema::IniciarAplicacion()
     estrategiaMovimiento8->SetContenedorCriaturas(&ContCriaturas);
     estrategiaMovimiento9->SetContenedorCriaturas(&ContCriaturas);
     estrategiaMovimiento10->SetContenedorCriaturas(&ContCriaturas);
+    estrategiaMovimiento11->SetContenedorCriaturas(&ContCriaturas);
+    estrategiaMovimiento12->SetContenedorCriaturas(&ContCriaturas);
+    estrategiaMovimiento13->SetContenedorCriaturas(&ContCriaturas);
+    estrategiaMovimiento14->SetContenedorCriaturas(&ContCriaturas);
+    estrategiaMovimiento15->SetContenedorCriaturas(&ContCriaturas);
 
     herbivoro1->SetEstrategiaMovimiento(estrategiaMovimiento1);
     herbivoro2->SetEstrategiaMovimiento(estrategiaMovimiento2);
     herbivoro3->SetEstrategiaMovimiento(estrategiaMovimiento3);
     herbivoro4->SetEstrategiaMovimiento(estrategiaMovimiento4);
-    carnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento5);
-    carnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento6);
-    omnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento7);
-    omnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento8);
-    omnivoro3->SetEstrategiaMovimiento(estrategiaMovimiento9);
-    omnivoro4->SetEstrategiaMovimiento(estrategiaMovimiento10);
+    herbivoro5->SetEstrategiaMovimiento(estrategiaMovimiento5);
+    herbivoro6->SetEstrategiaMovimiento(estrategiaMovimiento6);
+    carnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento7);
+    carnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento8);
+    omnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento10);
+    omnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento11);
+    omnivoro3->SetEstrategiaMovimiento(estrategiaMovimiento12);
+    omnivoro4->SetEstrategiaMovimiento(estrategiaMovimiento13);
+    omnivoro5->SetEstrategiaMovimiento(estrategiaMovimiento14);
+    omnivoro6->SetEstrategiaMovimiento(estrategiaMovimiento15);
 
     // Asignar estrategia de alimento a cada criatura
     herbivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     herbivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     herbivoro3->SetEstrategiaAlimento(estrategiaAlimento);
     herbivoro4->SetEstrategiaAlimento(estrategiaAlimento);
+    herbivoro5->SetEstrategiaAlimento(estrategiaAlimento);
+    herbivoro6->SetEstrategiaAlimento(estrategiaAlimento);
     carnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     carnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro3->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro4->SetEstrategiaAlimento(estrategiaAlimento);
+    omnivoro5->SetEstrategiaAlimento(estrategiaAlimento);
+    omnivoro6->SetEstrategiaAlimento(estrategiaAlimento);
 
     // Asignar estrategia de reproducción a cada criatura
     herbivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     herbivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     herbivoro3->SetEstrategiaReproducir(estrategiaReproducir);
     herbivoro4->SetEstrategiaReproducir(estrategiaReproducir);
+    herbivoro5->SetEstrategiaReproducir(estrategiaReproducir);
+    herbivoro6->SetEstrategiaReproducir(estrategiaReproducir);
     carnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     carnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro3->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro4->SetEstrategiaReproducir(estrategiaReproducir);
+    omnivoro5->SetEstrategiaReproducir(estrategiaReproducir);
+    omnivoro6->SetEstrategiaReproducir(estrategiaReproducir);
 
     // Crear y asignar estrategia de muerte individual para cada criatura
     herbivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     herbivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     herbivoro3->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     herbivoro4->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    herbivoro5->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    herbivoro6->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     carnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     carnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro3->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro4->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    omnivoro5->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
+    omnivoro6->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
 
     // Agregar al Contenedor de recursos
     ContRecursos.AgregarRecurso(agua);
@@ -313,10 +347,11 @@ void Ecosistema::IniciarAplicacion()
                 // Cargar imagen al menu
                 DrawTexture(fondo, 0, 0, WHITE);
 
-                // Crear botones de inicio y salir
+                // Crear botones de inicio, comandos y salir
                 float offsetY = altura * 0.05f;
-                Rectangle botonSimular = { ancho / 2.0f - 100, 350 - offsetY, 200, 50 };
-                Rectangle botonSalir = { ancho / 2.0f - 100, 420 - offsetY, 200, 50 };
+                Rectangle botonSimular = { ancho / 2.0f - 100, 300 - offsetY, 200, 50 };
+                Rectangle botonComandos = { ancho / 2.0f - 100, 370 - offsetY, 200, 50 };
+                Rectangle botonSalir = { ancho / 2.0f - 100, 440 - offsetY, 200, 50 };
 
                 // Verificar si se cambia a simulacion
                 if (CrearBoton(botonSimular, "Iniciar Simulacion")) {
@@ -332,11 +367,51 @@ void Ecosistema::IniciarAplicacion()
                     }
                 }
 
+                // Verificar si cambia a comandos
+                if (CrearBoton(botonComandos, "Comandos")) {
+                    currentScreen = COMANDOS;
+                }
+
                 // Verificar si cambia a salir
                 if (CrearBoton(botonSalir, "Salir")) {
                     currentScreen = SALIR;
                 }
             } 
+            break;
+
+            case COMANDOS:
+            {
+                // Cargar imagen de fondo
+                DrawTexture(fondo, 0, 0, WHITE);
+
+                // Título
+                DrawText("Comandos para el cambio de clima", ancho/2 - 250, 50, 30, BLACK);
+                DrawText("(Probabilidad de generacion de recursos)", ancho/2 - 200, 90, 20, BLACK);
+
+                // Comando lluvia
+                DrawText("\"lluvia\"", 450, 150, 25, BLUE);
+                DrawText("Agua: 40%", 450, 190, 20, BLACK);
+                DrawText("Plantas: 40%", 440, 220, 20, BLACK);
+                DrawText("Alimento: 20%", 440, 250, 20, BLACK);
+
+                // Comando soleado
+                DrawText("\"soleado\"", 450, 320, 25, ORANGE);
+                DrawText("Agua: 20%", 450, 360, 20, BLACK);
+                DrawText("Plantas: 40%", 440, 390, 20, BLACK);
+                DrawText("Alimento: 40%", 440, 420, 20, BLACK);
+
+                // Comando nieve
+                DrawText("\"nieve\"", 450, 490, 25, SKYBLUE);
+                DrawText("Agua: 20%", 450, 530, 20, WHITE);
+                DrawText("Plantas: 20%", 440, 560, 20, WHITE);
+                DrawText("Alimento: 60%", 440, 590, 20, WHITE);
+
+                // Botón volver al menú
+                Rectangle botonVolver = { ancho/2 - 100, altura - 100, 200, 50 };
+                if (CrearBoton(botonVolver, "Volver al Menu")) {
+                    currentScreen = MENU;
+                }
+            }
             break;
         
             case SIMULACION:
@@ -392,20 +467,18 @@ void Ecosistema::IniciarAplicacion()
 
                 // Boton regresar detiene y carga la musica de las ventanas
                 Rectangle botonRegresar = { 10, 25, 200, 50 };
-                if (CrearBoton(botonRegresar, "Regresar"))
+                if (CrearBoton(botonRegresar, "Terminar"))
                 {
-                    currentScreen = MENU;
+                    currentScreen = SALIR;
                     simulacionActiva = false;
                     EstrategiaMorir::SetSimulacionActiva(false);
-                    PlayMusicStream(musica);
                 }
 
                 if (IsKeyPressed(KEY_ESCAPE))
                 {
-                    currentScreen = MENU;
+                    currentScreen = SALIR;
                     simulacionActiva = false;
                     EstrategiaMorir::SetSimulacionActiva(false);
-                    PlayMusicStream(musica);
                 }
 
                 // Dibujar el campo de texto y boton de ejecutar en la parte arriba de simulacion

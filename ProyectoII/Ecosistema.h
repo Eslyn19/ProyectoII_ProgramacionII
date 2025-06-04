@@ -14,7 +14,7 @@
 #define TITULO_VENTANA "Simulacion Entorno"
 
 // Velocidad de las criaturas
-#define VEL_CARN 3.0f
+#define VEL_CARN 1.0f
 #define VEL_HERB 2.2f
 #define VEL_OMNI 2.6f
 
@@ -30,7 +30,7 @@
 #define CARNE "Carne.png"
 #define AGUA "agua.png"
 
-enum GameScreen { MENU = 0, SIMULACION, SALIR };
+enum GameScreen { MENU = 0, SIMULACION, COMANDOS, SALIR };
 
 class Ecosistema
 {

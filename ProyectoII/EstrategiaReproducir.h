@@ -5,7 +5,7 @@
 #include "RecursosContenedor.h"
 #include "raylib.h"
 
-#define VEL_CARNI 3.0f
+#define VEL_CARNI 1.0f
 #define VEL_HERBI 2.2f
 #define VEL_OMNIV 2.6f
 
