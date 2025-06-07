@@ -23,13 +23,13 @@ Recurso* GeneradorRecursosObserver::GenerarRecursoConPesos(const std::string& cl
     int pesos[3];
 
     if (clima == "soleado") {
-        pesos[0] = 40; pesos[1] = 40; pesos[2] = 20;
+        pesos[0] = 30; pesos[1] = 50; pesos[2] = 20;
     }
     else if (clima == "lluvia") {
-        pesos[0] = 25; pesos[1] = 25; pesos[2] = 50;
+        pesos[0] = 15; pesos[1] = 25; pesos[2] = 60;
     }
     else if (clima == "nieve") {
-        pesos[0] = 60; pesos[1] = 25; pesos[2] = 15;
+        pesos[0] = 40; pesos[1] = 40; pesos[2] = 20;
     }
 
     int total = pesos[0] + pesos[1] + pesos[2];

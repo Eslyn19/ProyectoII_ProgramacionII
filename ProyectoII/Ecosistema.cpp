@@ -3,39 +3,11 @@
 #include "RecursosContenedor.h"
 #include "RecursosObserver.h"
 #include "EstrategiaMorir.h"
-#include <thread>
-#include <atomic>
-#include <mutex>
 
 // Variables para guardar palabra en el campo de texto
 char comando[64] = "";
 bool textFieldActivo = false;
 std::string resultadoComando = "";
-
-// Variables para el thread de colisiones
-std::thread threadColisiones;
-std::atomic<bool> ejecutandoColisiones(false);
-std::mutex mutexColisiones;
-
-// Función para el thread de colisiones
-void ThreadColisiones(ContenedorCriaturas* contCriaturas, RecursosContenedor* contRecursos) {
-    while (ejecutandoColisiones) {
-        std::lock_guard<std::mutex> lock(mutexColisiones);
-        int numCriaturas = contCriaturas->GetCantidadCriaturas();
-
-        for (int i = 0; i < numCriaturas; i++) {
-            Criatura* criatura = contCriaturas->GetCriatura(i);
-            if (criatura) {
-                EstrategiaAlimento* estrategia = criatura->GetEstrategiaAlimento();
-                if (estrategia) {
-                    estrategia->Mover(criatura);
-                }
-            }
-        }
-        
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-}
 
 // Consructor
 Ecosistema::Ecosistema(std::string _nombre) : nombre(_nombre), simulacionActiva(false) {}
@@ -146,20 +118,20 @@ void Ecosistema::IniciarAplicacion()
 
     // Crear criaturas usando la fábrica
     FabricaAbstracta* fabrica = new FabricaConcreta();
-    Criatura* herbivoro1 = fabrica->CrearHerbivoro(HERBIVORO, 100, 700, 100, 100, VEL_HERB);
-    Criatura* herbivoro2 = fabrica->CrearHerbivoro(HERBIVORO, 600, 400, 100, 100, VEL_HERB);
-    Criatura* herbivoro3 = fabrica->CrearHerbivoro(HERBIVORO, 300, 200, 100, 100, VEL_HERB);
-    Criatura* herbivoro4 = fabrica->CrearHerbivoro(HERBIVORO, 800, 600, 100, 100, VEL_HERB);
-    Criatura* herbivoro5 = fabrica->CrearHerbivoro(HERBIVORO, 450, 300, 100, 100, VEL_HERB);
-    Criatura* herbivoro6 = fabrica->CrearHerbivoro(HERBIVORO, 150, 400, 100, 100, VEL_HERB);
-    Criatura* carnivoro1 = fabrica->CrearCarnivoro(CARNIVORO, 400, 200, 100, 100, VEL_CARN);
-    Criatura* carnivoro2 = fabrica->CrearCarnivoro(CARNIVORO, 240, 600, 100, 100, VEL_CARN);
-    Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, 800, 750, 100, 100, VEL_OMNI);
-    Criatura* omnivoro2 = fabrica->CrearOmnivoro(OMNIVORO, 600, 700, 100, 100, VEL_OMNI);
-    Criatura* omnivoro3 = fabrica->CrearOmnivoro(OMNIVORO, 400, 500, 100, 100, VEL_OMNI);
-    Criatura* omnivoro4 = fabrica->CrearOmnivoro(OMNIVORO, 900, 300, 100, 100, VEL_OMNI);
-    Criatura* omnivoro5 = fabrica->CrearOmnivoro(OMNIVORO, 500, 100, 100, 100, VEL_OMNI);
-    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, 140, 560, 100, 100, VEL_OMNI);
+    Criatura* herbivoro1 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* herbivoro2 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* herbivoro3 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* herbivoro4 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* herbivoro5 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* herbivoro6 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
+    Criatura* carnivoro1 = fabrica->CrearCarnivoro(CARNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_CARN);
+    Criatura* carnivoro2 = fabrica->CrearCarnivoro(CARNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_CARN);
+    Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
+    Criatura* omnivoro2 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
+    Criatura* omnivoro3 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
+    Criatura* omnivoro4 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
+    Criatura* omnivoro5 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
+    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
 
     // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
@@ -315,10 +287,6 @@ void Ecosistema::IniciarAplicacion()
 
     // Obtener la instancia del Singleton de Entorno
     Entorno* entorno = Entorno::GetInstancia();
-
-    // Iniciar thread de colisiones
-    ejecutandoColisiones = true;
-    threadColisiones = std::thread(ThreadColisiones, &ContCriaturas, &ContRecursos);
 
     GameScreen currentScreen = MENU;
     while (!WindowShouldClose() && currentScreen != SALIR)
@@ -498,12 +466,6 @@ void Ecosistema::IniciarAplicacion()
         EndDrawing();
     }
 
-    // Detener thread de colisiones
-    ejecutandoColisiones = false;
-    if (threadColisiones.joinable()) {
-        threadColisiones.join();
-    }
-
     // Limpiar recursos
     StopMusicStream(musica);
     UnloadMusicStream(musica);
@@ -520,11 +482,6 @@ void Ecosistema::IniciarAplicacion()
 
 // Destructor
 Ecosistema::~Ecosistema() {
-    ejecutandoColisiones = false;
-    if (threadColisiones.joinable()) {
-        threadColisiones.join();
-    }
-
     CloseAudioDevice();
     CloseWindow();
 }
