@@ -19,6 +19,11 @@
  * -------------------------------------------------------------------+
 */
 
+/*  
+    Tiempo aparacion de recursos(tiempo) y condiciones por clima--> RecursosObserver.cpp
+    Velocidad de criaturas --> Ecosistema.h
+*/
+
 #include "Ecosistema.h"
 
 int main()

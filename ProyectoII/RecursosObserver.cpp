@@ -2,7 +2,7 @@
 #include "Entorno.h"
 #include "raylib.h"
 
-#define TIEMPO_GENERACION 0.5f //Tiempo en segundos entre generación de recursos
+#define TIEMPO_GENERACION 1.5f //Tiempo en segundos entre generación de recursos
 
 static bool rand_initialized = []() { std::srand(std::time(nullptr)); return true; }();
 
