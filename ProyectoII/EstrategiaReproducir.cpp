@@ -12,30 +12,15 @@ EstrategiaReproducir::EstrategiaReproducir(RecursosContenedor* _contRecursos, Co
 }
 
 void EstrategiaReproducir::Mover(Criatura* criatura) {
-    const float NACIMIENTO = 1.0f;
-    const int MAX_CRIATURAS_POR_TIPO = 20;  // Límite máximo de criaturas por tipo
+    const float TIEMPO_REPRODUCCION = 5.0f;  
     if (!criatura || !contCriaturas) {
         return;
     }
 
     float tiempoActual = GetTime();
     
-    // Verificar si ha pasado el tiempo de cooldown
-    if (tiempoActual - ultimoTiempoReproduccion < NACIMIENTO) {
-        return;
-    }
-
-    // Contar criaturas del mismo tipo
-    int contadorTipo = 0;
-    for (int i = 0; i < contCriaturas->GetCantidadCriaturas(); i++) {
-        Criatura* otraCriatura = contCriaturas->GetCriatura(i);
-        if (otraCriatura && SonMismoTipo(criatura, otraCriatura)) {
-            contadorTipo++;
-        }
-    }
-
-    // Si ya alcanzamos el límite máximo, no reproducir
-    if (contadorTipo >= MAX_CRIATURAS_POR_TIPO) {
+    // Verificar si ha pasado el tiempo de espera
+    if (tiempoActual - ultimoTiempoReproduccion < TIEMPO_REPRODUCCION) {
         return;
     }
 
@@ -45,9 +30,11 @@ void EstrategiaReproducir::Mover(Criatura* criatura) {
         if (otraCriatura && otraCriatura != criatura) {
             if (HayColision(criatura, otraCriatura)) {
                 if (SonMismoTipo(criatura, otraCriatura)) {
-                    CrearNuevaCriatura(criatura);
-                    ultimoTiempoReproduccion = tiempoActual;
-                    return;
+                    if (tiempoActual - ultimoTiempoReproduccion >= TIEMPO_REPRODUCCION) {
+                        CrearNuevaCriatura(criatura);
+                        ultimoTiempoReproduccion = tiempoActual;
+                        return;
+                    }
                 }
             }
         }
@@ -55,9 +42,12 @@ void EstrategiaReproducir::Mover(Criatura* criatura) {
 }
 
 bool EstrategiaReproducir::SonMismoTipo(Criatura* c1, Criatura* c2) {
-    if (dynamic_cast<Herbivoro*>(c1) && dynamic_cast<Herbivoro*>(c2)) return true;
-    if (dynamic_cast<Carnivoro*>(c1) && dynamic_cast<Carnivoro*>(c2)) return true;
-    if (dynamic_cast<Omnivoro*>(c1) && dynamic_cast<Omnivoro*>(c2)) return true;
+    if (dynamic_cast<Herbivoro*>(c1) && dynamic_cast<Herbivoro*>(c2)) 
+        return true;
+    if (dynamic_cast<Carnivoro*>(c1) && dynamic_cast<Carnivoro*>(c2)) 
+        return true;
+    if (dynamic_cast<Omnivoro*>(c1) && dynamic_cast<Omnivoro*>(c2)) 
+        return true;
     return false;
 }
 
@@ -89,21 +79,14 @@ void EstrategiaReproducir::CrearNuevaCriatura(Criatura* criatura) {
     }
 
     if (nuevaCriatura != nullptr) {
-        // Crear y asignar estrategia de movimiento
         EstrategiaMovimiento* nuevaEstrategiaMovimiento = new EstrategiaMovimiento();
         nuevaEstrategiaMovimiento->SetContenedorCriaturas(contCriaturas);
+
         nuevaCriatura->SetEstrategiaMovimiento(nuevaEstrategiaMovimiento);
-
-        // Asignar estrategia de alimento
         nuevaCriatura->SetEstrategiaAlimento(new EstrategiaAlimento(contRecursos, contCriaturas));
-
-        // Asignar estrategia de reproducción
         nuevaCriatura->SetEstrategiaReproducir(new EstrategiaReproducir(contRecursos, contCriaturas));
-
-        // Asignar estrategia de muerte
         nuevaCriatura->SetEstrategiaMorir(new EstrategiaMorir(contRecursos, contCriaturas));
 
-        // Agregar la criatura al contenedor
         contCriaturas->AgregarCriatura(nuevaCriatura);
     } 
 

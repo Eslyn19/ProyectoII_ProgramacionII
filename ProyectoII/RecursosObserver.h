@@ -8,6 +8,7 @@
 #define CARNE_IMG "carne.png"
 #define PLANTA_IMG "planta.png"
 #define AGUA_IMG "agua.png"
+#define TIEMPO_GENERACION 0.7f //Tiempo en segundos entre generación de recursos
 
 class GeneradorRecursosObserver : public Observador {
 private:
