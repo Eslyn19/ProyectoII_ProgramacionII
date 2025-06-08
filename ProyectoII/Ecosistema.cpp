@@ -121,17 +121,11 @@ void Ecosistema::IniciarAplicacion()
     Criatura* herbivoro1 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
     Criatura* herbivoro2 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
     Criatura* herbivoro3 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
-    Criatura* herbivoro4 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
-    Criatura* herbivoro5 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
-    Criatura* herbivoro6 = fabrica->CrearHerbivoro(HERBIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_HERB);
     Criatura* carnivoro1 = fabrica->CrearCarnivoro(CARNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_CARN);
     Criatura* carnivoro2 = fabrica->CrearCarnivoro(CARNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_CARN);
     Criatura* omnivoro1 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
     Criatura* omnivoro2 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
     Criatura* omnivoro3 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
-    Criatura* omnivoro4 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
-    Criatura* omnivoro5 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
-    Criatura* omnivoro6 = fabrica->CrearOmnivoro(OMNIVORO, GetRandomValue(0, 1000), GetRandomValue(100, 768), 100, 100, VEL_OMNI);
 
     // Crear recursos base
     FabricaRecursoAbstracta* fabricaRecursos = new FabricaRecursoConcreta();
@@ -162,17 +156,11 @@ void Ecosistema::IniciarAplicacion()
     ContCriaturas.AgregarCriatura(herbivoro1);
     ContCriaturas.AgregarCriatura(herbivoro2);
     ContCriaturas.AgregarCriatura(herbivoro3);
-    ContCriaturas.AgregarCriatura(herbivoro4);
-    ContCriaturas.AgregarCriatura(herbivoro5);
-    ContCriaturas.AgregarCriatura(herbivoro6);
     ContCriaturas.AgregarCriatura(carnivoro1);
     ContCriaturas.AgregarCriatura(carnivoro2);
     ContCriaturas.AgregarCriatura(omnivoro1);
     ContCriaturas.AgregarCriatura(omnivoro2);
     ContCriaturas.AgregarCriatura(omnivoro3);
-    ContCriaturas.AgregarCriatura(omnivoro4);
-    ContCriaturas.AgregarCriatura(omnivoro5);
-    ContCriaturas.AgregarCriatura(omnivoro6);
 
     // Crear y asignar estrategia de movimiento individual para cada criatura
     EstrategiaMovimiento* estrategiaMovimiento1 = new EstrategiaMovimiento();
@@ -210,65 +198,41 @@ void Ecosistema::IniciarAplicacion()
     herbivoro1->SetEstrategiaMovimiento(estrategiaMovimiento1);
     herbivoro2->SetEstrategiaMovimiento(estrategiaMovimiento2);
     herbivoro3->SetEstrategiaMovimiento(estrategiaMovimiento3);
-    herbivoro4->SetEstrategiaMovimiento(estrategiaMovimiento4);
-    herbivoro5->SetEstrategiaMovimiento(estrategiaMovimiento5);
-    herbivoro6->SetEstrategiaMovimiento(estrategiaMovimiento6);
     carnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento7);
     carnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento8);
     omnivoro1->SetEstrategiaMovimiento(estrategiaMovimiento10);
     omnivoro2->SetEstrategiaMovimiento(estrategiaMovimiento11);
     omnivoro3->SetEstrategiaMovimiento(estrategiaMovimiento12);
-    omnivoro4->SetEstrategiaMovimiento(estrategiaMovimiento13);
-    omnivoro5->SetEstrategiaMovimiento(estrategiaMovimiento14);
-    omnivoro6->SetEstrategiaMovimiento(estrategiaMovimiento15);
 
     // Asignar estrategia de alimento a cada criatura
     herbivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     herbivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     herbivoro3->SetEstrategiaAlimento(estrategiaAlimento);
-    herbivoro4->SetEstrategiaAlimento(estrategiaAlimento);
-    herbivoro5->SetEstrategiaAlimento(estrategiaAlimento);
-    herbivoro6->SetEstrategiaAlimento(estrategiaAlimento);
     carnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     carnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro1->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro2->SetEstrategiaAlimento(estrategiaAlimento);
     omnivoro3->SetEstrategiaAlimento(estrategiaAlimento);
-    omnivoro4->SetEstrategiaAlimento(estrategiaAlimento);
-    omnivoro5->SetEstrategiaAlimento(estrategiaAlimento);
-    omnivoro6->SetEstrategiaAlimento(estrategiaAlimento);
 
     // Asignar estrategia de reproducción a cada criatura
     herbivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     herbivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     herbivoro3->SetEstrategiaReproducir(estrategiaReproducir);
-    herbivoro4->SetEstrategiaReproducir(estrategiaReproducir);
-    herbivoro5->SetEstrategiaReproducir(estrategiaReproducir);
-    herbivoro6->SetEstrategiaReproducir(estrategiaReproducir);
     carnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     carnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro1->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro2->SetEstrategiaReproducir(estrategiaReproducir);
     omnivoro3->SetEstrategiaReproducir(estrategiaReproducir);
-    omnivoro4->SetEstrategiaReproducir(estrategiaReproducir);
-    omnivoro5->SetEstrategiaReproducir(estrategiaReproducir);
-    omnivoro6->SetEstrategiaReproducir(estrategiaReproducir);
 
     // Crear y asignar estrategia de muerte individual para cada criatura
     herbivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     herbivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     herbivoro3->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    herbivoro4->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    herbivoro5->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    herbivoro6->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     carnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     carnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro1->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro2->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
     omnivoro3->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    omnivoro4->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    omnivoro5->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
-    omnivoro6->SetEstrategiaMorir(new EstrategiaMorir(&ContRecursos, &ContCriaturas));
 
     // Agregar al Contenedor de recursos
     ContRecursos.AgregarRecurso(agua);

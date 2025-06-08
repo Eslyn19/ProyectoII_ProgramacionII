@@ -62,40 +62,37 @@ void EstrategiaMovimiento::Mover(Criatura* criatura) {
                     Herbivoro* herbivoro = dynamic_cast<Herbivoro*>(criatura);
                     Omnivoro* omnivoro = dynamic_cast<Omnivoro*>(criatura);
 
-                    if (carnivoro) {
-                        if (dynamic_cast<Herbivoro*>(otraCriatura) || dynamic_cast<Omnivoro*>(otraCriatura)) {
-                            contenedorCriaturas->EliminarCriatura(i);
-                            criatura->SetUltimoTiempoComida(GetTime());
-                            return; 
-                        }
-                    }
-                    // Add bouncing behavior for herbivores and omnivores
-                    else if (herbivoro || omnivoro) {
-                        Herbivoro* otroHerbivoro = dynamic_cast<Herbivoro*>(otraCriatura);
-                        Omnivoro* otroOmnivoro = dynamic_cast<Omnivoro*>(otraCriatura);
+                    Carnivoro* otroCarnivoro = dynamic_cast<Carnivoro*>(otraCriatura);
+                    Herbivoro* otroHerbivoro = dynamic_cast<Herbivoro*>(otraCriatura);
+                    Omnivoro* otroOmnivoro = dynamic_cast<Omnivoro*>(otraCriatura);
+
+                    // Check if they are different species
+                    bool sonDiferentesEspecies = 
+                        (carnivoro && (otroHerbivoro || otroOmnivoro)) ||
+                        (herbivoro && (otroCarnivoro || otroOmnivoro)) ||
+                        (omnivoro && (otroCarnivoro || otroHerbivoro));
+
+                    if (sonDiferentesEspecies) {
+                        // Calculate bounce direction
+                        float dx = x - otraCriatura->GetX();
+                        float dy = y - otraCriatura->GetY();
+                        float length = sqrt(dx * dx + dy * dy);
                         
-                        if (otroHerbivoro || otroOmnivoro) {
-                            // Calculate bounce direction
-                            float dx = x - otraCriatura->GetX();
-                            float dy = y - otraCriatura->GetY();
-                            float length = sqrt(dx * dx + dy * dy);
+                        if (length > 0) {
+                            // Normalize direction vector
+                            dx /= length;
+                            dy /= length;
                             
-                            if (length > 0) {
-                                // Normalize direction vector
-                                dx /= length;
-                                dy /= length;
-                                
-                                // Reverse velocities for both creatures
-                                velocidadX = dx * criatura->GetVelocidad();
-                                velocidadY = dy * criatura->GetVelocidad();
-                                
-                                // Move creatures apart to prevent sticking
-                                float newX = otraCriatura->GetX() + dx * 60.0f;
-                                float newY = otraCriatura->GetY() + dy * 60.0f;
-                                criatura->SetPos(newX, newY);
-                                
-                                return;
-                            }
+                            // Reverse velocities for both creatures
+                            velocidadX = dx * criatura->GetVelocidad();
+                            velocidadY = dy * criatura->GetVelocidad();
+                            
+                            // Move creatures apart to prevent sticking
+                            float newX = otraCriatura->GetX() + dx * 60.0f;
+                            float newY = otraCriatura->GetY() + dy * 60.0f;
+                            criatura->SetPos(newX, newY);
+                            
+                            return;
                         }
                     }
                 }
