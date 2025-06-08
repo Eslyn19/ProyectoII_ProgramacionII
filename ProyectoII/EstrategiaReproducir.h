@@ -5,9 +5,9 @@
 #include "RecursosContenedor.h"
 #include "raylib.h"
 
-#define VEL_CARNI 3.0f
-#define VEL_HERBI 2.2f
-#define VEL_OMNIV 2.6f
+#define VEL_CARNI 1.5f
+#define VEL_HERBI 1.0f
+#define VEL_OMNIV 1.0f
 
 #define HERBIVORO_IMG "Herbivoro.png"
 #define CARNIVORO_IMG "Carnivoro.png"
