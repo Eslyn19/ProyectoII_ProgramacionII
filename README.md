@@ -5,6 +5,8 @@
 
  El proyecto consiste en desarrollar una simulación de ecosistema donde criaturas con distintos tipos de alimentación (herbívoros, carnívoros y omnívoros) buscan sobrevivir mediante acciones como moverse, alimentarse, reproducirse y adaptarse al entorno. Las criaturas se generan aleatoriamente y su comportamiento depende de factores como el clima, la disponibilidad de recursos y su nivel de energía. El ecosistema evoluciona dinámicamente: los seres vivos pueden morir por hambre, edad o condiciones adversas, mientras que el clima y los recursos influyen constantemente en su supervivencia. La simulación se representa visualmente, permitiendo observar la interacción entre las criaturas y su entorno en tiempo real.
 
+![fondogit](https://github.com/user-attachments/assets/99547496-f6d0-4d7d-90f7-be19a9a10c6e)
+
 🚩 _Características Principales_
 ---
 
