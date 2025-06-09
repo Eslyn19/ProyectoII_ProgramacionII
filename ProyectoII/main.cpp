@@ -22,7 +22,7 @@
 /*  
     Tiempo aparacion de recursos(tiempo) y condiciones por clima--> RecursosObserver.h
     Velocidad de criaturas --> Ecosistema.h
-*/
+*/ 
 
 #include "Ecosistema.h"
 
