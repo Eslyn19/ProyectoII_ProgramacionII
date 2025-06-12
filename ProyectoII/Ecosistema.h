@@ -14,9 +14,9 @@
 #define TITULO_VENTANA "Simulacion Entorno"
 
 // Velocidad de las criaturas
-#define VEL_CARN 1.5f
-#define VEL_HERB 1.0f
-#define VEL_OMNI 1.0f
+#define VEL_CARN 2.5f
+#define VEL_HERB 2.0f
+#define VEL_OMNI 2.0f
 
 // Ruta de recursos
 #define INICIO "InitStartup.jpeg"

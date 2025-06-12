@@ -40,6 +40,11 @@ void ContenedorCriaturas::Redimensionar() {
 void ContenedorCriaturas::AgregarCriatura(Criatura* criatura) {
     if (criatura == nullptr) return;
     
+    if (cantidadCriaturas >= MAX_CRIATURAS) {
+        delete criatura;  
+        return;
+    }
+    
     if (cantidadCriaturas >= capacidad) {
         Redimensionar();
     }

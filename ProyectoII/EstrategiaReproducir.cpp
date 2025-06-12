@@ -63,6 +63,10 @@ void EstrategiaReproducir::CrearNuevaCriatura(Criatura* criatura) {
         return;
     }
 
+    if (contCriaturas->GetCantidadCriaturas() >= ContenedorCriaturas::MAX_CRIATURAS) {
+        return; 
+    }
+
     FabricaAbstracta* fabrica = new FabricaConcreta();
     Criatura* nuevaCriatura = nullptr;
     float nuevaX = GenerarPosicionAleatoriaX();

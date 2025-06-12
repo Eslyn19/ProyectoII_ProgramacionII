@@ -7,6 +7,7 @@ class EstrategiaMovimiento;
 
 class ContenedorCriaturas {
 public:
+    static const int MAX_CRIATURAS = 30; // Evitar caida del sistema por sobrepoblacion
     ContenedorCriaturas();
     ~ContenedorCriaturas();
 
